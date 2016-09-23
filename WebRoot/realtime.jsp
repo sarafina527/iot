@@ -81,11 +81,11 @@ String rootpath = request.getContextPath();
 				</div>
 
 				<ul class="selecttype typelist">
-					<li class="active">temp</li>
-					<li>humi</li>
-					<li>light</li>
-					<li>soiltemp</li>
-					<li>soilhumi</li>
+					<li class="active">温度(°C)<span>temp</span></li>
+					<li>湿度(g/m3)<span>humi</span></li>
+					<li>光照(Lx)<span>light</span></li>
+					<li>土壤温度(°C)<span>soiltemp</span></li>
+					<li>土壤湿度(g/m3)<span>soilhumi</span></li>
 				</ul>
 				<div class="figure" id="linechart">
 					

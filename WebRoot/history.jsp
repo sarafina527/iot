@@ -120,6 +120,7 @@ String rootpath = request.getContextPath();
 			      	if(anl!=null){
 					 %>
 				<div class="light float-left clearfat">
+					<!-- <div>光照(Lx)</div> -->
 					<label for="">平均值</label>
 					<input class="average" type="text" value=<%=anl.getLightave() %> readonly=true>
 					<label for="">最大值</label>
@@ -128,7 +129,8 @@ String rootpath = request.getContextPath();
 					<input class="min" type="text" value=<%=anl.getLightmin() %> readonly=true>
 				</div>
 				<div class="temp float-left">
-					<label for="">平均值</label>
+					<div>温度(°C)</div>
+					<!-- <label for="">平均值</label> -->
 					<input class="average" type="text" value=<%=anl.getTempave() %> readonly=true>
 					<label for="">最大值</label>
 					<input class="max" type="text" value=<%=anl.getTempmax() %> readonly=true>
@@ -137,6 +139,7 @@ String rootpath = request.getContextPath();
 
 				</div>
 				<div class="humi float-left">
+					<!-- <div class="label">湿度(g/m3)</div> -->
 					<label for="">平均值</label>
 					<input class="average" type="text" value=<%=anl.getHumiave() %> readonly=true>
 					<label for="">最大值</label>
@@ -145,7 +148,7 @@ String rootpath = request.getContextPath();
 					<input class="min" type="text" value=<%=anl.getHumimin() %> readonly=true>
 				</div>
 				<div class="soiltemp float-left">
-
+					<!-- <div>土壤温度(°C)</div> -->
 					<label for="">平均值</label>
 					<input class="average" type="text" value=<%=anl.getSoiltempave() %> readonly=true>
 					<label for="">最大值</label>
@@ -153,7 +156,8 @@ String rootpath = request.getContextPath();
 					<label for="">最小值</label>
 					<input class="min" type="text" value=<%=anl.getSoiltempmin() %> readonly=true>
 				</div>
-				<div class="soilhumi float-left">
+				<div class="soilhumi float-left">					
+					<!-- <div>土壤湿度(g/m3)</div> -->
 					<label for="">平均值</label>
 					<input class="average" type="text" value=<%=anl.getSoilhumiave() %> readonly=true>
 					<label for="">最大值</label>
@@ -194,6 +198,7 @@ String rootpath = request.getContextPath();
 			// $('.nodelist').children().eq(0).addClass('active');
 			updatePara();
 			tablestyle();
+			defaultdate();
 		});
     </script>
 	

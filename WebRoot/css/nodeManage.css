@@ -9,7 +9,13 @@ body{
 }
 
 html{
-	font-size:70px;}
+	font-size:70px;
+	width: 100%;
+	min-height: 100%;
+}
+body .footer{
+	bottom: 0;
+}
 	
 .wrap1{
 	margin-top:4.5em;

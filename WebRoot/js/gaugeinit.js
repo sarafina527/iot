@@ -226,7 +226,7 @@ function solidhumi(){
 }
 
 function linechart() {
-    var requestData = {nodeId:$('.nodelist li.active span').text(),type:$('.typelist li.active').text()};
+    var requestData = {nodeId:$('.nodelist li.active span').text(),type:$('.typelist li.active span').text()};
     $.get('servlet/rtJsonServlet',requestData,function(data){
         chartData = JSON.parse(data);//传数据
         var visitChart = new FusionCharts({

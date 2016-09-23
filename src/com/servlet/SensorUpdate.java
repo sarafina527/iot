@@ -24,7 +24,10 @@ public class SensorUpdate extends HttpServlet {
 		String nodeId = request.getParameter("nodeId");
 		String maxAlert = request.getParameter("maxAlert");  
 		String minAlert = request.getParameter("minAlert");
-		String location = java.net.URLDecoder.decode(request.getParameter("location"),"UTF-8");
+		String location = null;
+		if(request.getParameter("location")!=null){
+			location = java.net.URLDecoder.decode(request.getParameter("location"),"UTF-8");
+		}
 		System.out.println("sensorId:" + sensorId);     
 		System.out.println("maxAlert:" + maxAlert);
 		System.out.println("minAlert:" + minAlert);

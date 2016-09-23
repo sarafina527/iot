@@ -3,6 +3,7 @@ body{
 	font-family:  "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 	font-size: 14px;
 	background:-webkit-gradient(linear, left top, left bottom, from(#add8e6), to(#fff));
+	/*min-height: 100%;*/
 }
 a{
 	color: #000;
@@ -364,25 +365,26 @@ td span,th span{
 	font-size: 1.2em;
 }
 .anlysis .light{
-	background:#fff url(../img/light.svg) right top no-repeat;
+	background:#fff url(../img/light.svg) left top no-repeat;
 	background-size: 40%;
 }
 .anlysis .temp{
-	background:#fff url(../img/temp.svg) 95% 1% no-repeat;
+	background:#fff url(../img/temp.svg) 5% 1% no-repeat;
 	background-size: 35%;
 }
 .anlysis .humi{
-	background:#fff url(../img/humi.svg) 90% 3% no-repeat;
+	background:#fff url(../img/humi.svg) 10% 3% no-repeat;
 	background-size: 30%;
 }
 .anlysis .soiltemp{
-	background:#fff url(../img/soiltemp.svg) 90% 3% no-repeat;
+	background:#fff url(../img/soiltemp.svg) 10% 3% no-repeat;
 	background-size: 35%;
 }
 .anlysis .soilhumi{
-	background:#fff url(../img/soilhumi.svg) 90% 3% no-repeat;
+	background:#fff url(../img/soilhumi.svg) 10% 3% no-repeat;
 	background-size: 30%;
 }
+
 
 /*实时数据*/
 .rt-data{
@@ -472,4 +474,7 @@ td span,th span{
     /*background: url(../img/node.png) no-repeat 10px 50%;*/
     background-size: 15px;
     padding-left: 33px;
+}
+.typelist li span{
+	visibility: hidden;
 }

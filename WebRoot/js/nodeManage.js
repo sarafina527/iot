@@ -1,3 +1,42 @@
+function clickNode(){
+	$('.nodelist li').removeClass('active');
+	$(this).addClass('active');
+	var nodeId = $(this).children().text();
+	$('#node_id').val(nodeId);
+	// var href = location.href;
+	// if(location.search!=""){
+	// 	location.search
+	// }
+	location.search = "?nodeId="+nodeId;
+}
+function initNode(){
+	var args = urlArgs();
+	var nodeId = args["nodeId"];
+	$('.nodelist li').removeClass('active');
+	if(nodeId){
+		$('.nodelist li span:contains("'+nodeId+'")').parent().addClass('active');
+	}else{
+		$('.nodelist').children().eq(0).addClass('active');
+	}
+	
+}
+// 解析URL参数，返回
+function urlArgs() {
+    var args = {};
+    var query = location.search.substring(1); // 过滤掉'?'
+    var pairs = query.split("&");//以&符号拆分
+    for(var i = 0; i < pairs.length; i++)
+    {
+        var pos = pairs[i].indexOf('=');
+        if (pos == -1)
+             continue;
+        var name = pairs[i].substring(0,pos);
+        var value = pairs[i].substring(pos+1);
+        value = decodeURIComponent(value);
+        args[name] = value; 
+    }
+    return args;
+}
 function GetXmlHttpObject(){     
 	var xmlHttp = null;     
 	try{         xmlHttp = new XMLHttpRequest();     }

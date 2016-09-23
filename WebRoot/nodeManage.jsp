@@ -116,7 +116,6 @@ String rootpath = request.getContextPath();
 		</div>
 	</div>
     <script type="text/javascript" src="<%=rootpath%>/js/jquery-3.1.0.js"></script>
-    <script type="text/javascript" src="<%=rootpath%>/js/hisclick.js"></script>
     <script type="text/javascript" src="<%=rootpath%>/js/nodeManage.js"></script>
 	<script type="text/javascript">
         $(document).ready(function(){
