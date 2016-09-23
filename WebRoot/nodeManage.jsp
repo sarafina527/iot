@@ -1,4 +1,8 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page import="com.model.maxmin,com.model.Users,com.model.sensormeta,com.dao.sensormetaDao" %>
+<%
+String rootpath = request.getContextPath();
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,14 +14,27 @@
 </head>
 <body>
 	<div class="header">
-		<div class="logo"><a href="#"><img src="img/HaiCloudlogo.png" height="50px"/>智能检测系统</a></div>
+		<div class="logo"><a href="#">智能检测系统</a></div>
 		<div class="nav">
 			<ul>
 				<li><a href="#">监控中心</a></li>
 				<li><a href="#">节点管理</a></li>
 				<li><a href="#">开发者中心</a></li>
 				<li><a href="#">运行记录</a></li>
-				<li class="user"><a href="#">Admin</a></li>
+				<%
+					Users u = (Users)session.getAttribute("user");
+					if(null == u)
+					{
+					    response.sendRedirect(rootpath+"/login.jsp");
+					}else{
+						%><li class="user"><a href="#"><%=u.getUsername()%></a></li>
+						<%
+					}
+					int node_id = 1;
+					if(request.getParameter("nodeId")!=null){
+						node_id = Integer.parseInt(request.getParameter("nodeId"));
+					}
+				%>
 				<li><a href="#">退出</a></li>
 			</ul>
 		</div>
@@ -25,19 +42,22 @@
 	<div class="wrap1">
 		<div class="sidebar">
 			<ul class="nodelist">
-				<li class="active"><a href="#">节点一</a></li>
-				<li><a href="#">节点二</a></li>
-				<li><a href="#">节点三</a></li>
-				<li><a href="#">节点四</a></li>
+			<%  
+				if(null != u)
+				{
+					List<Integer> nodes = (List)session.getAttribute("nodes");
+					for(int i=0;i<nodes.size();i++){
+	    				%>
+	       				<li>节点<span><%=nodes.get(i)%></span></li>
+	       				<%
+	        		}
+				}
+        	%>
 			</ul>		
 		</div>
 		<div class="nodeManageContent">
-        	<input type="text" class="nodeName" value="节点一">
-            <!-- <div class="mac">
-            	<h1>MAC地址</h1>
-                <input type="text" class="macValue" value="00-01-6C-06-A6-29">
-                <button id="pwd">更改</button>
-            </div> -->
+            <div class="node_id_div nodeName">节点<input type="text" value="1" id="node_id" name="node_id" readonly=true></div>
+           
             <div>
             	<table class="nodeTable">
                 	<thead>
@@ -51,28 +71,34 @@
                     
                     <tbody>
                         <%
-                        MaxMin 
+                        sensormetaDao smd = new sensormetaDao();
+                        List<sensormeta> ml = smd.queryByNodeId(node_id);
                         
-                        while(rs.next())
+                        for(int i=0;i<ml.size();i++)
                         {
-                            int sensor_id=rs.getInt(1);
-                            String sensor_type=rs.getString(2);
-                            int node_id=rs.getInt(3);
-                            String description=rs.getString(4);
-                            String location=rs.getString(5);
-                            double max_alert=rs.getDouble(6);
-                            double min_alert=rs.getDouble(7);
-                            boolean switch_state=rs.getBoolean(8);
+                            int sensor_id=ml.get(i).getSensor_id();
+                            String sensor_type=ml.get(i).getSensor_type();
+                            //int node_id=ml.get(i).getNode_id();
+                           
+                            double max_alert=ml.get(i).getMax_alert();
+                            double min_alert=ml.get(i).getMin_alert();
+                            String switch_state=ml.get(i).getStatus();
+                            
                             
                 %>
                             
                         <tr id="colume_<%=sensor_id %>">
                             <td><%=sensor_type %></td>
-                            <td><input type="text" style="width:70px" value="<%=max_alert %>" onchange="updateMaxAlert(<%=sensor_id%>,this.value)"></input></td>
-                            <td><input type="text" style="width:70px" value="<%=min_alert %>" onchange="updateMinAlert(<%=sensor_id%>,this.value)"></input></td>
+                            <td><input type="text" value="<%=max_alert %>" onchange="updateMaxAlert(<%=sensor_id%>,this.value)"></input></td>
+                            <td><input type="text" value="<%=min_alert %>" onchange="updateMinAlert(<%=sensor_id%>,this.value)"></input></td>
                             
-                            <td><%
-                                if(switch_state)
+                            <td class="nodeSwitch"> 
+                                <label class="ui-switch">
+                                    <input type="checkbox" checked="">
+                                </label>
+                            </td>
+                            <!-- <td><%
+                                if(true)
                                 {
                                 %>
                                 <div class="switch">
@@ -89,7 +115,7 @@
                                 <%  
                                 }
                                 %>             
-                            </td>                            
+                            </td> -->                            
                         </tr>  
                                   
                                   
@@ -112,7 +138,16 @@
              <!-- ©  -->2016 Najing Hadoop; user contributions licensed under 
 		</div>
 	</div>
-	
+    <script type="text/javascript" src="<%=rootpath%>/js/jquery-3.1.0.js"></script>
+    <script type="text/javascript" src="<%=rootpath%>/js/hisclick.js"></script>
+    <script type="text/javascript" src="<%=rootpath%>/js/nodeManage.js"></script>
+	<script type="text/javascript">
+        $(document).ready(function(){
+            $('.nodelist li').bind('click',clickNode);
+            initNode();
+
+        });
+    </script>
 
 </body>
 </html>

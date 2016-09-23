@@ -19,6 +19,11 @@
     <servlet-name>rtJsonServlet</servlet-name>
     <servlet-class>com.servlet.rtJsonServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>SensorUpdate</servlet-name>
+    <servlet-class>com.servlet.SensorUpdate</servlet-class>
+  </servlet>
+
 
 
 
@@ -40,6 +45,10 @@
   <servlet-mapping>
     <servlet-name>rtJsonServlet</servlet-name>
     <url-pattern>/servlet/rtJsonServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SensorUpdate</servlet-name>
+    <url-pattern>/servlet/SensorUpdate</url-pattern>
   </servlet-mapping>
   
   <welcome-file-list>

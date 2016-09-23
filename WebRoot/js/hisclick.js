@@ -3,6 +3,11 @@ function clickNode(){
 	$(this).addClass('active');
 	var nodeId = $(this).children().text();
 	$('#node_id').val(nodeId);
+	// var href = location.href;
+	// if(location.search!=""){
+	// 	location.search
+	// }
+	location.search = "?nodeId="+nodeId;
 }
 //选择折线图数据源
 function clickType(){
@@ -30,7 +35,7 @@ function updatePara(){
 
 }
 // 解析URL参数，返回
-function urlArgs(paraname) {
+function urlArgs() {
     var args = {};
     var query = location.search.substring(1); // 过滤掉'?'
     var pairs = query.split("&");//以&符号拆分
@@ -49,5 +54,12 @@ function urlArgs(paraname) {
 function tablestyle(){
 	$('tr:nth-child(odd)').addClass('odd');
 	$('tr').first().removeClass('odd').addClass('tablehead');
+}
+function initNode(){
+	var args = urlArgs();
+	var nodeId = args["nodeId"];
+	console.log(nodeId);
+	$('.nodelist li').removeClass('active');
+	$('.nodelist li span:contains("'+nodeId+'")').parent().addClass('active');
 }
 

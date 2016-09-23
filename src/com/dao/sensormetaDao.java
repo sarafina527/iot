@@ -43,7 +43,9 @@ public class sensormetaDao {
 			
 			result.add(m);
 			
-		}		
+		}
+		rs.close();
+		stmt.close();
 		return result;
 	}
 	/**
@@ -86,4 +88,60 @@ public class sensormetaDao {
 		return min_alert;		
 	}
 	
+	/**
+	 * 获取警戒值对象
+	 * @param node_id
+	 * @return
+	 * @throws Exception
+	 */
+	public maxmin getMaxminByNodeId(Integer node_id) throws Exception{
+		
+		maxmin mm = new maxmin();
+		List<sensormeta> metas = queryByNodeId(node_id);
+		for (sensormeta meta : metas) {
+			if(meta.getSensor_type().equals("光照传感器")){
+				mm.setLight_max(meta.getMax_alert());
+				mm.setLight_min(meta.getMin_alert());
+			}else if(meta.getSensor_type().equals("温度传感器")){
+				mm.setTemp_max(meta.getMax_alert());
+				mm.setTemp_min(meta.getMin_alert());
+			}else if(meta.getSensor_type().equals("湿度传感器")){
+				mm.setHumi_max(meta.getMax_alert());
+				mm.setHumi_min(meta.getMin_alert());
+			}else if(meta.getSensor_type().equals("土壤温度传感器")){
+				mm.setSoiltemp_max(meta.getMax_alert());
+				mm.setSoiltemp_min(meta.getMin_alert());
+			}else if(meta.getSensor_type().equals("土壤湿度传感器")){
+				mm.setSoilhumi_max(meta.getMax_alert());
+				mm.setSoilhumi_min(meta.getMin_alert());
+			}else{
+				System.out.println("maxmin error!");
+			}
+		}
+		
+		return mm;
+	}
+	
+	/**
+	 * 更新数据库警戒值
+	 * @param maxAlert
+	 * @param sensorId
+	 * @throws SQLException
+	 */
+	public void UpdateMaxalertBySensorId(String maxAlert,String sensorId) throws SQLException{
+		Connection conn = DBUtil.getConnection();
+		Statement stmt = conn.createStatement();
+		String sql = "update sensormeta set max_alert="+maxAlert+" where sensor_id= "+sensorId;  
+		stmt.executeUpdate(sql);
+		stmt.close();
+	}
+	
+	public void UpdateMinalertBySensorId(String minAlert,String sensorId) throws SQLException{
+		Connection conn = DBUtil.getConnection();
+		Statement stmt = conn.createStatement();
+		String sql = "update sensormeta set min_alert="+minAlert+" where sensor_id= "+sensorId;  
+		System.out.println(sql);
+		stmt.executeUpdate(sql); 
+		stmt.close();
+	}
 }
