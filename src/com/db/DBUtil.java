@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class DBUtil {
 //	private static String url = "jdbc:mysql://192.168.3.1:3306/field_monitor";//·þÎñÆ÷url
-	private static String url = "jdbc:mysql://127.0.0.1:3306/field_monitor";
+	private static String url = "jdbc:mysql://127.0.0.1:3306/field_monitor?useUnicode=true&characterEncoding=utf8";
 	private static String username = "root";
 	private static String password = "907856";
 	private static Connection conn = null;

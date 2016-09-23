@@ -19,9 +19,12 @@ public class SensorUpdate extends HttpServlet {
 
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		String sensorId = request.getParameter("sensorId");     
+		
+		String sensorId = request.getParameter("sensorId");
+		String nodeId = request.getParameter("nodeId");
 		String maxAlert = request.getParameter("maxAlert");  
 		String minAlert = request.getParameter("minAlert");
+		String location = java.net.URLDecoder.decode(request.getParameter("location"),"UTF-8");
 		System.out.println("sensorId:" + sensorId);     
 		System.out.println("maxAlert:" + maxAlert);
 		System.out.println("minAlert:" + minAlert);
@@ -32,6 +35,9 @@ public class SensorUpdate extends HttpServlet {
 			}
 			if(minAlert!=null&&minAlert!=""){
 				smd.UpdateMinalertBySensorId(minAlert, sensorId);
+			}
+			if(location!=null&&location!=""&&nodeId!=null&&nodeId!=""){
+				smd.UpdateLocationByNodeId(location, nodeId);
 			}
 			
 		} catch (SQLException e) {

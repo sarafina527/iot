@@ -17,10 +17,10 @@ String rootpath = request.getContextPath();
 		<div class="logo"><a href="#">智能检测系统</a></div>
 		<div class="nav">
 			<ul>
-				<li><a href="#">监控中心</a></li>
-				<li><a href="#">节点管理</a></li>
+				<li><a href="realtime.jsp">监控中心</a></li>
+				<li><a href="nodeManage.jsp">节点管理</a></li>
 				<li><a href="#">开发者中心</a></li>
-				<li><a href="#">运行记录</a></li>
+				<!-- <li><a href="#">运行记录</a></li> -->
 				<%
 					Users u = (Users)session.getAttribute("user");
 					if(null == u)

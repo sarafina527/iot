@@ -58,8 +58,12 @@ function tablestyle(){
 function initNode(){
 	var args = urlArgs();
 	var nodeId = args["nodeId"];
-	console.log(nodeId);
 	$('.nodelist li').removeClass('active');
-	$('.nodelist li span:contains("'+nodeId+'")').parent().addClass('active');
+	if(nodeId){
+		$('.nodelist li span:contains("'+nodeId+'")').parent().addClass('active');
+	}else{
+		$('.nodelist').children().eq(0).addClass('active');
+	}
+	
 }
 

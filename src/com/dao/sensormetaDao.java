@@ -135,11 +135,39 @@ public class sensormetaDao {
 		stmt.executeUpdate(sql);
 		stmt.close();
 	}
-	
+	/**
+	 * 更新最小警戒值
+	 * @param minAlert
+	 * @param sensorId
+	 * @throws SQLException
+	 */
 	public void UpdateMinalertBySensorId(String minAlert,String sensorId) throws SQLException{
 		Connection conn = DBUtil.getConnection();
 		Statement stmt = conn.createStatement();
 		String sql = "update sensormeta set min_alert="+minAlert+" where sensor_id= "+sensorId;  
+		System.out.println(sql);
+		stmt.executeUpdate(sql); 
+		stmt.close();
+	}
+	public void UpdateLocationByNodeId(String location,String nodeId) throws SQLException{
+		Connection conn = DBUtil.getConnection();
+		Statement stmt = conn.createStatement();
+		String sql = "update sensormeta set location='"+location+"' where node_id= "+nodeId;  
+		System.out.println(sql);
+		stmt.executeUpdate(sql); 
+		stmt.close();
+	}
+	/**
+	 * 更新开关状态
+	 * @param minAlert
+	 * @param sensorId
+	 * @throws SQLException
+	 */
+	public void UpdateSwitchBySensorId(String switch_state,String sensorId) throws SQLException{
+		Connection conn = DBUtil.getConnection();
+		Statement stmt = conn.createStatement();
+		String sql = "update sensor set switch_state='"+switch_state+"'  where sensor_id="+sensorId;
+		
 		System.out.println(sql);
 		stmt.executeUpdate(sql); 
 		stmt.close();

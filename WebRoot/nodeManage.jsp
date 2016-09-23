@@ -17,8 +17,8 @@ String rootpath = request.getContextPath();
 		<div class="logo"><a href="#">智能检测系统</a></div>
 		<div class="nav">
 			<ul>
-				<li><a href="#">监控中心</a></li>
-				<li><a href="#">节点管理</a></li>
+				<li><a href="realtime.jsp">监控中心</a></li>
+				<li><a href="nodeManager.jsp">节点管理</a></li>
 				<li><a href="#">开发者中心</a></li>
 				<li><a href="#">运行记录</a></li>
 				<%
@@ -56,7 +56,7 @@ String rootpath = request.getContextPath();
 			</ul>		
 		</div>
 		<div class="nodeManageContent">
-            <div class="node_id_div nodeName">节点<input type="text" value="1" id="node_id" name="node_id" readonly=true></div>
+            <!-- <div class="node_id_div nodeName">节点<input type="text" value="1" id="node_id" name="node_id" readonly=true></div> -->
            
             <div>
             	<table class="nodeTable">
@@ -65,7 +65,7 @@ String rootpath = request.getContextPath();
 							<th>传感器类</th>
 							<th>最高警戒值</th>
 							<th>最警戒值</th>
-							<th>开关</th>
+							<th>节点位置</th>
 						</tr>
                     </thead>
                     
@@ -82,7 +82,7 @@ String rootpath = request.getContextPath();
                            
                             double max_alert=ml.get(i).getMax_alert();
                             double min_alert=ml.get(i).getMin_alert();
-                            String switch_state=ml.get(i).getStatus();
+                            String location=ml.get(i).getLocation();
                             
                             
                 %>
@@ -91,31 +91,8 @@ String rootpath = request.getContextPath();
                             <td><%=sensor_type %></td>
                             <td><input type="text" value="<%=max_alert %>" onchange="updateMaxAlert(<%=sensor_id%>,this.value)"></input></td>
                             <td><input type="text" value="<%=min_alert %>" onchange="updateMinAlert(<%=sensor_id%>,this.value)"></input></td>
-                            
-                            <td class="nodeSwitch"> 
-                                <label class="ui-switch">
-                                    <input type="checkbox" checked="">
-                                </label>
-                            </td>
-                            <!-- <td><%
-                                if(true)
-                                {
-                                %>
-                                <div class="switch">
-                                    <input disabled="disabled" type="checkbox" checked id="switch_ckeckbox_<%=sensor_id %>"  onchange="switch_sensor(<%=sensor_id%>,<%=switch_state %>)"  />
-                                </div>              
-                                <%
-                                }
-                                else
-                                {
-                                %> 
-                                <div class="switch">
-                                    <input disabled="disabled" type="checkbox" unchecked id="switch_checkbox_<%=sensor_id %>" onchange="switch_sensor(<%=sensor_id%>,<%=switch_state %>)" />
-                                </div>
-                                <%  
-                                }
-                                %>             
-                            </td> -->                            
+                            <td><input type="text" value="<%=location %>" onchange="updateLocation(<%=node_id%>,this.value)"></input></td>
+                                                 
                         </tr>  
                                   
                                   

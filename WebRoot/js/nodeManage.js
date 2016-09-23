@@ -27,8 +27,7 @@ function updateMaxAlert(sensorId,maxAlert){
 	xmlHttp.send(null); 
 } 
 function updateMinAlert(sensorId,minAlert){ 
-	// alert(sensorId);
-	// alert(maxAlert); 
+
 	xmlHttp = GetXmlHttpObject();     
 	if(xmlHttp == null){         
 		alert ("you browser don't support the ajax");          
@@ -42,39 +41,45 @@ function updateMinAlert(sensorId,minAlert){
 	xmlHttp.open("GET", url, true);     
 	xmlHttp.send(null); 
 } 
-// function getmaxAlert(str){     
-// 	xmlHttp = GetXmlHttpObject();     
-// 	if(xmlHttp == null){         
-// 		alert ("you browser don't support the ajax");          
-// 		return;     
-// 	}     
-// 	var url = "./sensorResponse_1.jsp";     
-// 	url = url + "?q="+ str;     
-// 	url = url + "&sid ="+ Math.random();     
-// 	xmlHttp.onreadystatechange = stateChanged;     
-// 	xmlHttp.open("GET", url, true);     
-// 	xmlHttp.send(null); 
-// } 
+
 function stateChanged() {     
 	if(xmlHttp.readyState==4)     {         
 		//document.getElementById("rocarsmaxAlert").value = xmlHttp.responseText;  
 		alert("update success");   
 	} 
 }
-// function recontrol(nodeId,sensorId,samplerate) {
-// 	alert(sensorId);
-// 	alert(samplerate);
+function updateLocation(nodeId,location){ 
+
+	xmlHttp = GetXmlHttpObject();     
+	if(xmlHttp == null){         
+		alert ("you browser don't support the ajax");          
+		return;     
+	}     
+	var url = "./servlet/SensorUpdate";     
+	url = url + "?nodeId="+ nodeId;     
+	url = url + "&location="+ encodeURI(encodeURI(location)); 
+	// url=encodeURI(url); 
+	// url=encodeURI(url); //最重要的部分,两次调用encodeURI ,就是编码两次
+	xmlHttp.onreadystatechange = refresh;     
+	xmlHttp.open("GET", url, true);     
+	xmlHttp.send(null); 
+}
+
+function refresh(){
+	if(xmlHttp.readyState==4){ 
+		location.reload();
+	}
+}
+// function switch_sensor(sensorId,switch_state){
 // 	xmlHttp = GetXmlHttpObject();     
 // 	if(xmlHttp == null){         
 // 		alert ("you browser don't support the ajax");          
 // 		return;     
 // 	}     
-// 	var url = "./recontrol_1.jsp"; 
-// 	url = url + "?nodeId="+ nodeId;   
-// 	url = url + "&sensorId="+ sensorId;     
-// 	url = url + "&samplerate="+ samplerate;     
-// 	url = url + "&sid ="+ Math.random();     
-// 	xmlHttp.onreadystatechange = controlSend;     
+// 	var url = "./servlet/SwitchSensor";     
+// 	url = url + "?sensorId="+ sensorId;     
+// 	url = url + "&switch_state="+ switch_state;
+// 	xmlHttp.onreadystatechange = stateChanged;     
 // 	xmlHttp.open("GET", url, true);     
 // 	xmlHttp.send(null); 
 // }
