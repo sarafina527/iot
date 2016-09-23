@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>节点管理</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/layout.css">
+    <link rel="stylesheet" type="text/css" href="css/nodeManage.css">
+</head>
+<body>
+	<div class="header">
+		<div class="logo"><a href="#"><img src="img/HaiCloudlogo.png" height="50px"/>智能检测系统</a></div>
+		<div class="nav">
+			<ul>
+				<li><a href="#">监控中心</a></li>
+				<li><a href="#">节点管理</a></li>
+				<li><a href="#">开发者中心</a></li>
+				<li><a href="#">运行记录</a></li>
+				<li class="user"><a href="#">Admin</a></li>
+				<li><a href="#">退出</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="wrap1">
+		<div class="sidebar">
+			<ul class="nodelist">
+				<li class="active"><a href="#">节点一</a></li>
+				<li><a href="#">节点二</a></li>
+				<li><a href="#">节点三</a></li>
+				<li><a href="#">节点四</a></li>
+			</ul>		
+		</div>
+		<div class="nodeManageContent">
+        	<input type="text" class="nodeName" value="节点一">
+            <div class="mac">
+            	<h1>MAC地址</h1>
+                <input type="text" class="macValue" value="00-01-6C-06-A6-29">
+                <button id="pwd">更改</button>
+            </div>
+            <div>
+            	<table class="nodeTable">
+                	<thead>
+                    	<tr>
+							<th>传感器类</th>
+							<th>最高警戒值</th>
+							<th>最警戒值</th>
+							<th>开关</th>
+						</tr>
+                    </thead>
+                    
+                    <tbody>
+                    	<tr>
+                        	<td>光照传感器</td>
+                            <td><input type="number" value="2000" ></td>
+                             <td><input type="number" value="2000" ></td>
+                            <td class="nodeSwitch"> 
+                                <label class="ui-switch">
+                                      <input type="checkbox" checked="">
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                        	<td>空气温度传感器</td>
+                            <td><input type="number" value="2000" ></td>
+                            <td><input type="number" value="2000" ></td>
+                            <td class="nodeSwitch"> 
+                                <label class="ui-switch">
+                                      <input type="checkbox" checked="">
+                                </label>
+                            </td>
+                        </tr>
+                         <tr>
+                        	<td>空气湿度传感器器</td>
+                            <td><input type="number" value="2000" ></td>
+                            <td><input type="number" value="2000" ></td>
+                            <td class="nodeSwitch"> 
+                                <label class="ui-switch">
+                                      <input type="checkbox" checked="">
+                                </label>
+                            </td>
+                        </tr>
+                         <tr>
+                        	<td>土壤温度传感器</td>
+                            <td><input type="number" value="2000" ></td>
+                            <td><input type="number" value="2000" ></td>
+                            <td class="nodeSwitch"> 
+                                <label class="ui-switch">
+                                      <input type="checkbox" checked="">
+                                </label>
+                            </td>
+                        </tr>
+                         <tr>
+                        	<td>土壤湿度传感器</td>
+                            <td><input type="number" value="2000" ></td>
+                            <td><input type="number" value="2000" ></td>
+                            <td class="nodeSwitch"> 
+                                <label class="ui-switch">
+                                      <input type="checkbox" checked="">
+                                </label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+				<input type="button" value="保存">
+            </div>
+
+			
+			
+		</div>
+	</div>
+	
+	<div class="footer">
+		<div class="copyright">
+             <!-- ©  -->2016 Najing Hadoop; user contributions licensed under 
+		</div>
+	</div>
+	
+
+</body>
+</html>
