@@ -333,6 +333,7 @@ td span,th span{
 
 }
 .anlysis div{
+	position: relative;
 	width: 16%;
 	margin: 1.8%;
 	background: #fff;
@@ -383,6 +384,11 @@ td span,th span{
 .anlysis .soilhumi{
 	background:#fff url(../img/soilhumi.svg) 10% 3% no-repeat;
 	background-size: 30%;
+}
+.anlysis .unit{
+	position: absolute;
+	top: 20px;
+	right: 5px;
 }
 
 

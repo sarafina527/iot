@@ -17,8 +17,8 @@ String rootpath = request.getContextPath();
 		<div class="logo"><a href="#">智能检测系统</a></div>
 		<div class="nav">
 			<ul>
-				<li><a href="realtime.jsp">监控中心</a></li>
-				<li><a href="nodeManage.jsp">节点管理</a></li>
+				<li><a href="<%=rootpath%>/realtime.jsp">监控中心</a></li>
+				<li><a href="<%=rootpath%>/nodeManage.jsp">节点管理</a></li>
 				<li><a href="#">开发者中心</a></li>
 				<!-- <li><a href="#">运行记录</a></li> -->
 				<%
@@ -120,7 +120,7 @@ String rootpath = request.getContextPath();
 			      	if(anl!=null){
 					 %>
 				<div class="light float-left clearfat">
-					<!-- <div>光照(Lx)</div> -->
+					<span class="unit">光照(Lx)</span>
 					<label for="">平均值</label>
 					<input class="average" type="text" value=<%=anl.getLightave() %> readonly=true>
 					<label for="">最大值</label>
@@ -129,8 +129,8 @@ String rootpath = request.getContextPath();
 					<input class="min" type="text" value=<%=anl.getLightmin() %> readonly=true>
 				</div>
 				<div class="temp float-left">
-					<div>温度(°C)</div>
-					<!-- <label for="">平均值</label> -->
+					<span class="unit">温度(°C)</span>
+					<label for="">平均值</label>
 					<input class="average" type="text" value=<%=anl.getTempave() %> readonly=true>
 					<label for="">最大值</label>
 					<input class="max" type="text" value=<%=anl.getTempmax() %> readonly=true>
@@ -139,7 +139,7 @@ String rootpath = request.getContextPath();
 
 				</div>
 				<div class="humi float-left">
-					<!-- <div class="label">湿度(g/m3)</div> -->
+					<span class="unit">湿度(g/m3)</span>
 					<label for="">平均值</label>
 					<input class="average" type="text" value=<%=anl.getHumiave() %> readonly=true>
 					<label for="">最大值</label>
@@ -148,7 +148,7 @@ String rootpath = request.getContextPath();
 					<input class="min" type="text" value=<%=anl.getHumimin() %> readonly=true>
 				</div>
 				<div class="soiltemp float-left">
-					<!-- <div>土壤温度(°C)</div> -->
+					<span class="unit">土壤温度(°C)</span>
 					<label for="">平均值</label>
 					<input class="average" type="text" value=<%=anl.getSoiltempave() %> readonly=true>
 					<label for="">最大值</label>
@@ -157,7 +157,7 @@ String rootpath = request.getContextPath();
 					<input class="min" type="text" value=<%=anl.getSoiltempmin() %> readonly=true>
 				</div>
 				<div class="soilhumi float-left">					
-					<!-- <div>土壤湿度(g/m3)</div> -->
+					<span class="unit">土壤湿度(g/m3)</span>
 					<label for="">平均值</label>
 					<input class="average" type="text" value=<%=anl.getSoilhumiave() %> readonly=true>
 					<label for="">最大值</label>
