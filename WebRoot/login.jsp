@@ -4,6 +4,7 @@
 	<head>
 		<title>物联云登陆</title>
 		<link href="css/login.css" rel="stylesheet" type="text/css"/>
+		<link rel="stylesheet" type="text/css" href="css/reset.css">
 	</head>
 	<body>
 		<div class="login_containter">

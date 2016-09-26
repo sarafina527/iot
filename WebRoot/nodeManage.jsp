@@ -13,6 +13,7 @@ String rootpath = request.getContextPath();
     <link rel="stylesheet" type="text/css" href="css/nodeManage.css">
 </head>
 <body>
+	<div id="centerContainer">
 	<div class="header">
 		<div class="logo"><a href="#">智能检测系统</a></div>
 		<div class="nav">
@@ -36,12 +37,12 @@ String rootpath = request.getContextPath();
 						node_id = Integer.parseInt(request.getParameter("nodeId"));
 					}
 				%>
-				<li><a href="#">退出</a></li>
+				<!-- <li><a href="#">退出</a></li> -->
 			</ul>
 		</div>
 	</div>
 	<div class="wrap1">
-		<div class="sidebar">
+		<div id="sidebar" class="sidebar">
 			<ul class="nodelist">
 			<%  
 				if(null != u)
@@ -103,7 +104,6 @@ String rootpath = request.getContextPath();
                         	
                     </tbody>
                 </table>
-				<input type="button" value="保存">
             </div>
 
 			
@@ -116,13 +116,15 @@ String rootpath = request.getContextPath();
              <!-- ©  -->2016 Najing Hadoop; user contributions licensed under 
 		</div>
 	</div>
+	</div>
     <script type="text/javascript" src="<%=rootpath%>/js/jquery-3.1.0.js"></script>
     <script type="text/javascript" src="<%=rootpath%>/js/nodeManage.js"></script>
+    <script type="text/javascript" src="<%=rootpath%>/js/pageCenter.js"></script>
 	<script type="text/javascript">
         $(document).ready(function(){
             $('.nodelist li').bind('click',clickNode);
             initNode();
-
+             box();//当浏览器页面发生改变时，DIV随着页面的改变居中。
         });
     </script>
 

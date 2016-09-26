@@ -14,6 +14,7 @@ String rootpath = request.getContextPath();
 	<link rel="stylesheet" type="text/css" href="<%=rootpath%>/css/pageGroup.css"/>
 </head>
 <body>
+	<div id="centerContainer">
 	<div class="header">
 		<div class="logo"><a href="#">智能检测系统</a></div>
 		<div class="nav">
@@ -33,12 +34,12 @@ String rootpath = request.getContextPath();
 						<%
 					}
 				%>
-				<li><a href="#">退出</a></li>
+				<!-- <li><a href="#">退出</a></li> -->
 			</ul>
 		</div>
 	</div>
 	<div class="wrap">
-		<div class="sidebar">
+		<div class="sidebar" id="sidebar">
 			<ul class="nodelist">
 			<%  
 				if(null != u)
@@ -126,8 +127,9 @@ String rootpath = request.getContextPath();
 							}
 						}					
 			    	%>
-			    	<span id="pageCount"><%=pageCounts %></span>
-					<div class="pageUp">上一页</div>
+			    	<span id="pageCount"><%=pageCounts%></span>
+			    	<div class="first button">首页</div>
+					<div class="pageUp button">上一页</div>
 					<div class="pageList">
 					    <ul>
 					        <li>1</li>
@@ -137,7 +139,8 @@ String rootpath = request.getContextPath();
 					        <li>5</li>
 					    </ul>
 					</div>
-					<div class="pageDown">下一页</div>
+					<div class="pageDown button">下一页</div>
+					<div class="end button">尾页</div>
 				</div>
 			</div>
 						<!-- 数据分析 -->
@@ -203,12 +206,13 @@ String rootpath = request.getContextPath();
 
 	
 	<div class="footer"></div>
-		
+	</div>
 	<script type="text/javascript" src="<%=rootpath%>/js/jquery-3.1.0.js"></script>
 	<script type="text/javascript" src="<%=rootpath%>/js/jquery-1.8.3.min.js"></script>
 	<script type="text/javascript" src="<%=rootpath%>/js/hisclick.js"></script>
 	<script type="text/javascript" src="<%=rootpath%>/js/laydate.dev.js"></script>
 	<script type="text/javascript" src="<%=rootpath%>/js/pageGroup.js"></script>
+	<script type="text/javascript" src="<%=rootpath%>/js/pageCenter.js"></script>
 	<script type="text/javascript">
         laydate({
             elem: '#stdate'
@@ -229,6 +233,7 @@ String rootpath = request.getContextPath();
 			updatePara();
 			tablestyle();
 			defaultdate();
+			box();
 		});
     </script>
 	

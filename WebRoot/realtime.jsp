@@ -12,6 +12,7 @@ String rootpath = request.getContextPath();
 	<link rel="stylesheet" type="text/css" href="css/layout.css">
 </head>
 <body>
+<div id="centerContainer">
 	<div class="header">
 		<div class="logo"><a href="#">智能检测系统</a></div>
 		<div class="nav">
@@ -31,12 +32,12 @@ String rootpath = request.getContextPath();
 						<%
 					}
 				%>
-				<li><a href="#">退出</a></li>
+				<!-- <li><a href="#">退出</a></li> -->
 			</ul>
 		</div>
 	</div>
 	<div class="wrap">
-		<div class="sidebar">
+		<div class="sidebar" id="sidebar">
 			<ul class="nodelist">
 				<%
         			if(null == u)
@@ -100,18 +101,23 @@ String rootpath = request.getContextPath();
 	
 	<div class="footer"></div>
 		
-	<script type="text/javascript" src="js/jquery-3.1.0.js"></script>
-	<script type="text/javascript" src="js/hisclick.js"></script>
-	<script type="text/javascript" src="js/fusioncharts.js"></script>
-	<script type="text/javascript" src="js/gaugeinit.js"></script>
+</div>
+	<script type="text/javascript" src="<%=rootpath%>/js/jquery-3.1.0.js"></script>
+    <script type="text/javascript" src="<%=rootpath%>/js/hisclick.js"></script>
+    <script type="text/javascript" src="<%=rootpath%>/js/fusioncharts.js"></script>
+    <script type="text/javascript" src="<%=rootpath%>/js/gaugeinit.js"></script>
+    <script type="text/javascript" src="<%=rootpath%>/js/pageCenter.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('.nodelist li').bind('click',clickNode);
 			$('.typelist li').bind('click',clickType);
 			$('.nodelist').children().eq(0).addClass('active');
 			$('.typelist li').click(linechart);
-			var mydate = new Date();
-			$('.datetime').text(mydate.toLocalDateString());
+			box();
+			getNowFormatDate();
+			// var mydate = new Date();
+			// $('.datetime').text(mydate.toLocalDateString());
+			
 		});
  		FusionCharts.ready(temp);
  		FusionCharts.ready(humi);

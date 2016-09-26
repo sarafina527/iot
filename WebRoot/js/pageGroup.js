@@ -12,7 +12,7 @@ $(function(){
 
 	if(pageCount>5){
 		if(pn<=3){
-			page_icon(1,5,pn);
+			page_icon(1,5,pn-1);
 		}else{
 			if(pageCount-pn<=2){
 				page_icon(pageCount-4,pageCount,pn-pageCount+4);
@@ -41,7 +41,26 @@ $(function(){
 			$(this).siblings("li").removeClass("on");
 		}
 	});
-	
+	//点击首页触发
+	$("#pageGro .first").click(function(){
+		if(pageCount > 5){
+			page_icon(1,5,0);
+			goToPage(1);
+		}else{
+			page_icon(1,pageCount,0);
+			goToPage(1);
+		}
+	});
+	//点击尾页触发
+	$("#pageGro .end").click(function(){
+		if(pageCount > 5){
+			page_icon(pageCount-4,pageCount,4);
+			goToPage(pageCount);
+		}else{
+			page_icon(1,pageCount,pageCount);
+			goToPage(pageCount);
+		}
+	});
 	//点击上一页触发
 	$("#pageGro .pageUp").click(function(){
 		if(pageCount > 5){
