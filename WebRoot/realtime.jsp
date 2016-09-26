@@ -25,6 +25,7 @@ String rootpath = request.getContextPath();
 					if(null == u)
 					{
 					    response.sendRedirect(rootpath+"/login.jsp");
+					    return;
 					}else{
 						%><li class="user"><a href="#"><%=u.getUsername()%></a></li>
 						<%
@@ -64,11 +65,12 @@ String rootpath = request.getContextPath();
 						2016年9月1日 11:20:51
 					</div>
 					<div class="status">
-						<ul >
+						<!-- <ul >
 							<li>数据正常</li>
 							<li>数据异常</li>
 							<li>设备断开</li>
-						</ul>
+						</ul> -->
+						节点<span></span>
 					</div>
 					<div class="clear"></div>
 				</div>
@@ -108,6 +110,8 @@ String rootpath = request.getContextPath();
 			$('.typelist li').bind('click',clickType);
 			$('.nodelist').children().eq(0).addClass('active');
 			$('.typelist li').click(linechart);
+			var mydate = new Date();
+			$('.datetime').text(mydate.toLocalDateString());
 		});
  		FusionCharts.ready(temp);
  		FusionCharts.ready(humi);

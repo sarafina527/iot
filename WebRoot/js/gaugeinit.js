@@ -218,6 +218,7 @@ function solidhumi(){
                         var requestData = {nodeId:$('.nodelist li.active span').text(),type:"soilhumi"};
                         $.get('servlet/realtimeValue',requestData,function(data){
                             FusionCharts.items["soilhumi"].feedData("&value="+data);//传数据
+                            $('.status span').text($('.nodelist li.active span').text());
                         });
                     }, 5000);
                 }

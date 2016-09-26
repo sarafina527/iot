@@ -125,7 +125,9 @@ public class HistoryServlet extends HttpServlet {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
 		
-		
+		int totalCount = result.size();
+		request.setAttribute("totalCount", totalCount);
+		System.out.println(totalCount);
 		PageBean pagebean=new PageBean(10);//初始化PageBean对象  
 		//设置当前页  
 		pagebean.setCurPage(page); //这里page是从页面上获取的一个参数，代表页数  

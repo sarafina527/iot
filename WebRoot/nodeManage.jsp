@@ -26,6 +26,7 @@ String rootpath = request.getContextPath();
 					if(null == u)
 					{
 					    response.sendRedirect(rootpath+"/login.jsp");
+					    return;
 					}else{
 						%><li class="user"><a href="#"><%=u.getUsername()%></a></li>
 						<%

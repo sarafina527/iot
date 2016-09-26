@@ -11,6 +11,7 @@ String rootpath = request.getContextPath();
 	<title>历史记录</title>
 	<link rel="stylesheet" type="text/css" href="<%=rootpath%>/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="<%=rootpath%>/css/layout.css">
+	<link rel="stylesheet" type="text/css" href="<%=rootpath%>/css/pageGroup.css"/>
 </head>
 <body>
 	<div class="header">
@@ -26,6 +27,7 @@ String rootpath = request.getContextPath();
 					if(null == u)
 					{
 					    response.sendRedirect(rootpath+"/login.jsp");
+					    return;
 					}else{
 						%><li class="user"><a href="#"><%=u.getUsername()%></a></li>
 						<%
@@ -111,6 +113,32 @@ String rootpath = request.getContextPath();
 					 %>
 					</tbody>
 			    </table>
+			    <div id="pageGro" class="cb">
+			    	<%
+						int count = 0;
+						int pageCounts=0;
+						if(request.getAttribute("totalCount")!=null){
+							count =(Integer)(request.getAttribute("totalCount"));
+							if(count%10==0){
+								pageCounts = count/10;
+							}else{
+								pageCounts = count/10+1;
+							}
+						}					
+			    	%>
+			    	<span id="pageCount"><%=pageCounts %></span>
+					<div class="pageUp">上一页</div>
+					<div class="pageList">
+					    <ul>
+					        <li>1</li>
+					        <li>2</li>
+					        <li>3</li>
+					        <li>4</li>
+					        <li>5</li>
+					    </ul>
+					</div>
+					<div class="pageDown">下一页</div>
+				</div>
 			</div>
 						<!-- 数据分析 -->
 			<div class="anlysis">
@@ -177,8 +205,10 @@ String rootpath = request.getContextPath();
 	<div class="footer"></div>
 		
 	<script type="text/javascript" src="<%=rootpath%>/js/jquery-3.1.0.js"></script>
+	<script type="text/javascript" src="<%=rootpath%>/js/jquery-1.8.3.min.js"></script>
 	<script type="text/javascript" src="<%=rootpath%>/js/hisclick.js"></script>
 	<script type="text/javascript" src="<%=rootpath%>/js/laydate.dev.js"></script>
+	<script type="text/javascript" src="<%=rootpath%>/js/pageGroup.js"></script>
 	<script type="text/javascript">
         laydate({
             elem: '#stdate'
