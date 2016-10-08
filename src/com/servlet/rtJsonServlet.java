@@ -22,7 +22,7 @@ import net.sf.json.JSONObject;
 
 import com.dao.sensordataDao;
 import com.model.sensordata;
-
+//根据节点号和数据源取前10条数据
 public class rtJsonServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)

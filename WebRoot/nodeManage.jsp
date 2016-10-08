@@ -19,7 +19,7 @@ String rootpath = request.getContextPath();
 		<div class="nav">
 			<ul>
 				<li><a href="<%=rootpath%>/realtime.jsp">监控中心</a></li>
-				<li><a href="<%=rootpath%>/nodeManager.jsp">节点管理</a></li>
+				<li><a href="<%=rootpath%>/nodeManage.jsp">节点管理</a></li>
 				<li><a href="#">开发者中心</a></li>
 				<li><a href="#">运行记录</a></li>
 				<%

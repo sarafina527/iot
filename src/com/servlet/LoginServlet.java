@@ -52,19 +52,21 @@ public class LoginServlet extends HttpServlet {
 		userDao ud = new userDao();
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		
+		System.out.println(username);
 		/*System.out.println(username+" "+password);*/
 		List<Users> result = new ArrayList<Users>();
-		
-		try {
-			result = ud.queryUserByName(username);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(username!=null&&password!=null){
+			try {
+				result = ud.queryUserByName(username);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		if(result==null){
+		
+		if(result==null||result.size()==0){
 			/*System.out.println("null");*/
-			response.sendRedirect(request.getContextPath()+"/login.jsp");
+			response.sendRedirect(request.getContextPath()+"/loginerror.jsp");
 		}else{
 			String sp = result.get(0).getPassword();
 //			System.out.println(sp);
@@ -85,7 +87,7 @@ public class LoginServlet extends HttpServlet {
 			}
 			else
 			{
-				response.sendRedirect(request.getContextPath()+"/login.jsp");
+				response.sendRedirect(request.getContextPath()+"/loginerror.jsp");
 			}
 		}
 		

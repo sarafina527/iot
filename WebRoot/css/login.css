@@ -150,3 +150,12 @@ body{
 	background-repeat:no-repeat;
 	text-indent:48px;
 	}
+
+.loginerror{
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	color: #f00;
+	font-size: 12px;
+
+}

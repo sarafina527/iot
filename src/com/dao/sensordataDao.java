@@ -52,6 +52,29 @@ public class sensordataDao {
 		}		
 		return result;
 	}
+	public sensordata queryTop1ByNodeId(int nodeId) throws Exception{		
+		Connection conn = DBUtil.getConnection();
+		String sql = "select * from sensordata where node_id = ? order by id desc limit 1";		
+		PreparedStatement prestmt = conn.prepareStatement(sql);
+		prestmt.setInt(1, nodeId);
+		ResultSet rs = prestmt.executeQuery();		
+		sensordata s = null;		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		while(rs.next()){
+			s = new sensordata();
+			s.setId(rs.getInt("id"));
+			s.setDate(sdf.parse(rs.getString("date")));//日期格式转换
+			s.setTime(rs.getString("time"));
+			s.setLight(rs.getFloat("light"));
+			s.setTemp(rs.getFloat("temp"));
+			s.setHumi(rs.getFloat("humi"));
+			s.setSoiltemp(rs.getFloat("soiltemp"));
+			s.setSoilhumi(rs.getFloat("soilhumi"));	
+			s.setNodeId(nodeId);
+			break;			
+		}		
+		return s;
+	}
 	//按日期查询
 	public List<sensordata> queryByNodeIdAndDate(int nodeId,String stdate,String enddate) throws Exception{
 		

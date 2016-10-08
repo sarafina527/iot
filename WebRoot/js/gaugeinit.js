@@ -1,9 +1,31 @@
-function temp(){
-    var updateAnnotation,
-        chart = new FusionCharts({
+//图表
+//获取仪表盘的最新数据   
+function getGaugejson(){
+    var requestData = {nodeId:$('.nodelist li.active span').text()};
+    $.get('servlet/realtimeJson',requestData,function(data){
+        window.rtjson = JSON.parse(data);//获取当前第一条数据  全局变量存储最新数据
+        $('.datetime').text(rtjson.date+" "+rtjson.time);
+
+    });
+    // console.log(rtjson);
+}
+function getLinejson(){
+    var requestData = {nodeId:$('.nodelist li.active span').text(),type:$('.typelist li.active span').text()};
+    $.get('servlet/rtJsonServlet',requestData,function(data){
+        window.linejson = data;
+    });
+}
+
+//仪表盘5个子图
+function gaugechart() {
+    var requestData = {nodeId:$('.nodelist li.active span').text()};
+    $.get('servlet/realtimeJson',requestData,function(data){
+        window.rtjson = JSON.parse(data);//获取当前第一条数据
+        $('.datetime').text(rtjson.date+" "+rtjson.time);
+        var tempchart = new FusionCharts({
             type: 'thermometer',
             renderAt: 'chart-container1',
-            id  : 'temp',
+            id  : 'tempID',
             width: '200',
             height: '250',
             dataFormat: 'json',
@@ -21,29 +43,22 @@ function temp(){
                     "theme" : "fint",
                     "bgCOlor": "#ffffff"
                 },
-                "value": "30",
+                "value":rtjson.temp,
             },
             "events" :{
                 "initialized": function (evt, arg) {
-                    var dataUpdate = setInterval(function () {
-                        var requestData = {nodeId:$('.nodelist li.active span').text(),type:"temp"};
-                        $.get('servlet/realtimeValue',requestData,function(data){
-                            FusionCharts.items["temp"].feedData("&value="+data);//传数据
-                        });    
+                    var dataUpdate = setInterval(function () {                        
+                        FusionCharts.items["tempID"].feedData("&value="+rtjson.temp);//传数据
                     }, 5000);//设置更新频率5000ms
                     
                 },
                 
             }
-        })
-    .render();
-}
-function humi(){
-    var fuelVolume = 110,
-        fuelWidget = new FusionCharts({
+        });
+        var humichart = new FusionCharts({
             type: 'cylinder',
             dataFormat: 'json',
-            id: 'humi',
+            id: 'humiID',
             renderAt: 'chart-container2',
             width: '200',
             height: '250',
@@ -58,143 +73,116 @@ function humi(){
                     "bgCOlor": "#ffffff",
                     "borderAlpha": "0",
                     "cylFillColor": "#008ee4",
-                    "valueFontColor" : "#000000",//字体颜色
                     "showValue":true
                 },
-                "value": "50"
+                "value":rtjson.humi
             },
             "events":{
                 "rendered": function(evtObj, argObj){
                     setInterval(function () {
-                        var requestData = {nodeId:$('.nodelist li.active span').text(),type:"humi"};
-                        $.get('servlet/realtimeValue',requestData,function(data){
-                            FusionCharts.items["humi"].feedData("&value="+data);//传数据
-                        });
+                        FusionCharts.items["humiID"].feedData("&value="+rtjson.humi);//传数据
                     }, 5000);
                 }
             }
-        }).render();
-}
-
-
-function light() {
-    var salesChart = new FusionCharts({
-        type: 'bulb',
-        renderAt: 'chart-container3',
-        id: 'light',
-        width: '200',
-        height: '250',
-        dataFormat: 'json',
-        dataSource: {
-            "chart": {
-                "caption": "光照监测",
-                "upperlimit": "25000",
-                "lowerlimit": "200",
-                "captionPadding":"30",
-                "showshadow":"0",
-                "showvalue": "1",
-                "useColorNameAsValue":"1",
-                "placeValuesInside":"1",
-                "valueFontSize": "16",
-                //Cosmetics
-                "baseFontColor" : "#333333",
-                "baseFont" : "Helvetica Neue,Arial",
-                "captionFontSize" : "14",
-                "showborder": "0",
-                "bgcolor": "#FFFFFF",
-                "toolTipColor" : "#ffffff",
-                "toolTipBorderThickness" : "0",
-                "toolTipBgColor" : "#000000",
-                "toolTipBgAlpha" : "80",
-                "toolTipBorderRadius" : "2",
-                "toolTipPadding" : "5",
-                "valueFontColor" : "#000000",//字体颜色
-                "showValue":true
+        });
+        var lightchart = new FusionCharts({
+            type: 'bulb',
+            renderAt: 'chart-container3',
+            id: 'lightID',
+            width: '200',
+            height: '250',
+            dataFormat: 'json',
+            dataSource: {
+                "chart": {
+                    "caption": "光照监测",
+                    "upperlimit": "25000",
+                    "lowerlimit": "200",
+                    "captionPadding":"30",
+                    "showshadow":"0",
+                    "showvalue": "1",
+                    "useColorNameAsValue":"1",
+                    "placeValuesInside":"1",
+                    "valueFontSize": "16",
+                    //Cosmetics
+                    "showborder": "0",
+                    "bgcolor": "#FFFFFF",
+                    "showValue":true
+                },
+                "colorrange": {
+                    "color": [
+                        {
+                            "minvalue": "25000",
+                            "maxvalue": "30000",
+                            "label": "超出上界！",
+                            "code": "#ff0000"
+                        }, 
+                        {
+                            "minvalue": "200",
+                            "maxvalue": "25000",
+                            "label": "指标正常",
+                            "code": "#00ff00"
+                        }, 
+                        {
+                            "minvalue": "",
+                            "maxvalue": "200",
+                            "label": "超出下界",
+                            "code": "#ff9900"
+                        }
+                    ]
+                },
+                "value": rtjson.light
             },
-            "colorrange": {
-                "color": [
-                    {
-                        "minvalue": "25000",
-                        "maxvalue": "30000",
-                        "label": "超出上界！",
-                        "code": "#ff0000"
-                    }, 
-                    {
-                        "minvalue": "200",
-                        "maxvalue": "25000",
-                        "label": "指标正常",
-                        "code": "#00ff00"
-                    }, 
-                    {
-                        "minvalue": "",
-                        "maxvalue": "200",
-                        "label": "超出下界",
-                        "code": "#ff9900"
-                    }
-                ]
-            },
-            "value": "-5"
-        },
-        "events":{
-            "rendered": function(evtObj, argObj){
-                setInterval(function () {
-                    var requestData = {nodeId:$('.nodelist li.active span').text(),type:"light"};
-                    $.get('servlet/realtimeValue',requestData,function(data){
-                        FusionCharts.items["light"].feedData("&value="+data);//传数据
-                    });
-                }, 5000);
+            "events":{
+                "rendered": function(evtObj, argObj){               
+                    setInterval(function () {
+                        // var requestData = {nodeId:$('.nodelist li.active span').text(),type:"light"};
+                        // $.get('servlet/realtimeValue',requestData,function(data){
+                        //     FusionCharts.items["light"].feedData("&value="+data);//传数据
+                        // });
+                        FusionCharts.items["lightID"].feedData("&value="+rtjson.light);//传数据
+                        // console.log(rtjson.count);
+                    }, 5000);
+                }
             }
-        }
-    });
-    salesChart.render();
-    
-}
-function solidtemp() {
-    var chart = new FusionCharts({
-        type: 'thermometer',
-        renderAt: 'chart-container4',
-        id  : 'soiltemp',
-        width: '200',
-        height: '250',
-        dataFormat: 'json',
-        dataSource: {
-            "chart": {
-                "caption": "土壤温度监测",
-                "lowerLimit": "0",
-                "upperLimit": "100",
-                "numberSuffix": "°C",
-                "decimals" : "2",
-                "showhovereffect": "1",
-                "thmFillColor": "#e44b23",                
-                "thmOriginX": "100",
-                "theme" : "fint",
-                "bgcolor":"#ffffff",
-                "valueFontColor" : "#000000",//字体颜色
-                "showValue":true
+        });
+        var stempchart = new FusionCharts({
+            type: 'thermometer',
+            renderAt: 'chart-container4',
+            id  : 'soiltempID',
+            width: '200',
+            height: '250',
+            dataFormat: 'json',
+            dataSource: {
+                "chart": {
+                    "caption": "土壤温度监测",
+                    "lowerLimit": "0",
+                    "upperLimit": "100",
+                    "numberSuffix": "°C",
+                    "decimals" : "2",
+                    "showhovereffect": "1",
+                    "thmFillColor": "#e44b23",                
+                    "thmOriginX": "100",
+                    "theme" : "fint",
+                    "bgcolor":"#ffffff",
+                    "valueFontColor" : "#000000",//字体颜色
+                    "showValue":true
+                },
+                "value": rtjson.soiltemp
             },
-            "value": "40"
-        },
-        "events" :{
-            "initialized": function (evt, arg) {
-                var dataUpdate = setInterval(function () {
-                    var requestData = {nodeId:$('.nodelist li.active span').text(),type:"soiltemp"};
-                    $.get('servlet/realtimeValue',requestData,function(data){
-                        FusionCharts.items["soiltemp"].feedData("&value="+data);//传数据
-                    });
-                    
-                }, 5000);
-            }  
-        }
-    })
-    .render();
-}
-
-function solidhumi(){
-    var fuelVolume = 110,
-        fuelWidget = new FusionCharts({
+            "events" :{
+                "initialized": function (evt, arg) {
+                    var dataUpdate = setInterval(function () {
+                       
+                        FusionCharts.items["soiltempID"].feedData("&value="+rtjson.soiltemp);//传数据
+                       
+                    }, 5000);
+                }  
+            }
+        });
+        var shumichart = new FusionCharts({
             type: 'cylinder',
             dataFormat: 'json',
-            id: 'soilhumi',
+            id: 'soilhumiID',
             renderAt: 'chart-container5',
             width: '200',
             height: '250',
@@ -210,27 +198,33 @@ function solidhumi(){
                     "valueFontColor" : "#000000",//字体颜色
                     "showValue":true
                 },
-                "value": "110"
+                "value": rtjson.soilhumi
             },
             "events":{
                 "rendered": function(evtObj, argObj){
                     setInterval(function () {
-                        var requestData = {nodeId:$('.nodelist li.active span').text(),type:"soilhumi"};
-                        $.get('servlet/realtimeValue',requestData,function(data){
-                            FusionCharts.items["soilhumi"].feedData("&value="+data);//传数据
-                            $('.status span').text($('.nodelist li.active span').text());
-                        });
+                        
+                        FusionCharts.items["soilhumiID"].feedData("&value="+rtjson.soilhumi);//传数据
+                        $('.status span').text($('.nodelist li.active span').text());
                     }, 5000);
                 }
             }
-        }).render();
+        });
+        tempchart.render();
+        humichart.render();
+        lightchart.render();
+        stempchart.render();
+        shumichart.render();
+
+    });
 }
 
 function linechart() {
     var requestData = {nodeId:$('.nodelist li.active span').text(),type:$('.typelist li.active span').text()};
     $.get('servlet/rtJsonServlet',requestData,function(data){
-        chartData = JSON.parse(data);//传数据
+        linejson = JSON.parse(data);//传数据
         var visitChart = new FusionCharts({
+            id: 'lineID',
             type: 'line',
             renderAt: 'linechart',
             width: '800',
@@ -238,7 +232,7 @@ function linechart() {
             dataFormat: 'json',
             dataSource: {
                 "chart": {
-                    "caption": "气温趋势图",
+                    "caption": "趋势图",
                     "xAxisName": "Date",
                     "yAxisName": $('.typelist li.active').text(),
                     //Cosmetics
@@ -253,12 +247,25 @@ function linechart() {
                     "showXAxisLine" : "1",
                     "showAlternateHGridColor" : "0",                    
                 },
-                "data":chartData,
+                "data":linejson,
+            },
+            "events":{
+                "rendered": function(evtObj, argObj){
+                    setInterval(function () {
+                        var chartRef = FusionCharts("lineID"); 
+                        var url = 'http://localhost:8080/iot/servlet/rtJsonServlet'+"?nodeId"+$('.nodelist li.active span').text()+"&type="+ $('.typelist li.active span').text();
+                        console.log(url);
+                        chartRef.setChartDataUrl(url,"json")       
+                        // chartRef.setJSONData(linejson);//传数据
+                        // console.log(linejson);
+                    }, 5000);
+                }
             }
             
         });
     
         visitChart.render();
+        // setInterval(linechart,5000);
     });
     
 }

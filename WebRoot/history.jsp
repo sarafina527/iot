@@ -15,6 +15,7 @@ String rootpath = request.getContextPath();
 </head>
 <body>
 	<div id="centerContainer">
+	<!-- header -->
 	<div class="header">
 		<div class="logo"><a href="#">智能检测系统</a></div>
 		<div class="nav">
@@ -39,6 +40,7 @@ String rootpath = request.getContextPath();
 		</div>
 	</div>
 	<div class="wrap">
+		<!-- sidebar -->
 		<div class="sidebar" id="sidebar">
 			<ul class="nodelist">
 			<%  
@@ -54,6 +56,7 @@ String rootpath = request.getContextPath();
         	%>
 			</ul>
 		</div>
+		<!-- content body -->
 		<div class="content">
 			<ul class="tab-bar">
 				<li><a href="<%=rootpath%>/realtime.jsp">实时监控</a></li>
@@ -200,7 +203,6 @@ String rootpath = request.getContextPath();
 					}
 					 %>
 			</div>
-
 		</div>
 	</div>
 
@@ -209,30 +211,32 @@ String rootpath = request.getContextPath();
 	</div>
 	<script type="text/javascript" src="<%=rootpath%>/js/jquery-3.1.0.js"></script>
 	<script type="text/javascript" src="<%=rootpath%>/js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="<%=rootpath%>/js/common.js"></script>
 	<script type="text/javascript" src="<%=rootpath%>/js/hisclick.js"></script>
 	<script type="text/javascript" src="<%=rootpath%>/js/laydate.dev.js"></script>
 	<script type="text/javascript" src="<%=rootpath%>/js/pageGroup.js"></script>
 	<script type="text/javascript" src="<%=rootpath%>/js/pageCenter.js"></script>
 	<script type="text/javascript">
+		// 日期选择控件
         laydate({
             elem: '#stdate'
         });
         laydate({
             elem: '#enddate'
         });
-
+        // 分页
         function goPage(page){  
 	        //给pagenation.currentpage赋值，改变后的值  
 		    document.getElementById(" ").value=page;  
 		    alert("/////"+page);  
 		    document.pagenation.submit();  
 		}
+		// onload
 		$(document).ready(function(){
-			$('.nodelist li').bind('click',clickNode);
-			// $('.nodelist').children().eq(0).addClass('active');
-			updatePara();
-			tablestyle();
-			defaultdate();
+			$('.nodelist li').bind('click',clickNode);//点击切换样式
+			updatePara();//根据url参数更新页面选择项样式
+			tablestyle();//表格奇偶行样式区分
+			defaultdate();//设置默认日期
 			box();
 		});
     </script>

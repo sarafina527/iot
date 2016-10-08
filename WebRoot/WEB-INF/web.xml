@@ -31,6 +31,11 @@
     <servlet-name>SwitchSensor</servlet-name>
     <servlet-class>com.servlet.SwitchSensor</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>realtimeJson</servlet-name>
+    <servlet-class>com.servlet.realtimeJson</servlet-class>
+  </servlet>
+
 
 
 
@@ -67,6 +72,10 @@
   <servlet-mapping>
     <servlet-name>SwitchSensor</servlet-name>
     <url-pattern>/servlet/SwitchSensor</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>realtimeJson</servlet-name>
+    <url-pattern>/servlet/realtimeJson</url-pattern>
   </servlet-mapping>
   
   <welcome-file-list>

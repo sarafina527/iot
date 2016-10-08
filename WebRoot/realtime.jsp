@@ -13,6 +13,7 @@ String rootpath = request.getContextPath();
 </head>
 <body>
 <div id="centerContainer">
+	<!-- header -->
 	<div class="header">
 		<div class="logo"><a href="#">智能检测系统</a></div>
 		<div class="nav">
@@ -37,6 +38,7 @@ String rootpath = request.getContextPath();
 		</div>
 	</div>
 	<div class="wrap">
+		<!-- sidebar -->
 		<div class="sidebar" id="sidebar">
 			<ul class="nodelist">
 				<%
@@ -52,9 +54,9 @@ String rootpath = request.getContextPath();
         				}
         			}
         		%>
-			</ul>		
-			
+			</ul>			
 		</div>
+		<!-- content body -->
 		<div class="content">
 			<ul class="tab-bar">
 				<li><a href="">实时监控</a></li>
@@ -63,7 +65,7 @@ String rootpath = request.getContextPath();
 			<div class="rt-data">
 				<div class="rt-data-top">
 					<div class="datetime">
-						2016年9月1日 11:20:51
+						&nbsp;
 					</div>
 					<div class="status">
 						<!-- <ul >
@@ -103,28 +105,33 @@ String rootpath = request.getContextPath();
 		
 </div>
 	<script type="text/javascript" src="<%=rootpath%>/js/jquery-3.1.0.js"></script>
-    <script type="text/javascript" src="<%=rootpath%>/js/hisclick.js"></script>
+	<script type="text/javascript" src="<%=rootpath%>/js/common.js"></script>
+    <script type="text/javascript" src="<%=rootpath%>/js/realtime.js"></script>
     <script type="text/javascript" src="<%=rootpath%>/js/fusioncharts.js"></script>
     <script type="text/javascript" src="<%=rootpath%>/js/gaugeinit.js"></script>
     <script type="text/javascript" src="<%=rootpath%>/js/pageCenter.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$('.nodelist li').bind('click',clickNode);
+			$('.nodelist li').bind('click',clickNode);//bind the click event 
 			$('.typelist li').bind('click',clickType);
-			$('.nodelist').children().eq(0).addClass('active');
+			updatePara();//update the active node and type
 			$('.typelist li').click(linechart);
-			box();
-			getNowFormatDate();
-			// var mydate = new Date();
-			// $('.datetime').text(mydate.toLocalDateString());
+			box();//大屏居中显示
+			getGaugejson();
+			setInterval(getGaugejson,5000);
+			// getLinejson();
+			// setInterval(getLinejson,5000);
+			// console.log(rtjson);
+			// FusionCharts.ready(temp);
+		 //    FusionCharts.ready(humi);
+		 //    FusionCharts.ready(light);
+		 //    FusionCharts.ready(solidtemp);
+		 //    FusionCharts.ready(solidhumi);
+		 	FusionCharts.ready(gaugechart);
+		    FusionCharts.ready(linechart);
 			
 		});
- 		FusionCharts.ready(temp);
- 		FusionCharts.ready(humi);
- 		FusionCharts.ready(light);
- 		FusionCharts.ready(solidtemp);
- 		FusionCharts.ready(solidhumi);
- 		FusionCharts.ready(linechart);
+ 		
 	</script>
 	
 </body>

@@ -1,15 +1,15 @@
-// JavaScript Document
+//-------- 分页 -------------//
 $(function(){
 	//根据总页数判断，如果小于5页，则显示所有页数，如果大于5页，则显示5页。根据当前点击的页数生成
 	
 	var pageCount = parseInt($('#pageCount').text());//后台总页数
 	//生成分页按钮
-	var pn = 0;
+	var pn = 1;
 	var args = urlArgs();
 	if(args['page']){
 		pn = parseInt(args['page']);
 	}
-
+	//初始化
 	if(pageCount>5){
 		if(pn<=3){
 			page_icon(1,5,pn-1);
@@ -164,10 +164,11 @@ function pageDown(pageNum,pageCount){
 		break;
 	}
 }
+//添加或修改参数，刷新页面
 function goToPage(pageNum){
 	var cursearch = location.search;
 	var pattern = /page=\d+/;
-	if(cursearch.length==0){
+	if(cursearch.length==0){//添加或修改参数，刷新页面
 		//参数列表为空
 		location.search = "?page="+pageNum;
 	}else if(pattern.test(cursearch)){
@@ -178,20 +179,20 @@ function goToPage(pageNum){
 		location.search = cursearch+"&page="+pageNum;
 	}
 }
-// 解析URL参数，返回
-function urlArgs() {
-    var args = {};
-    var query = location.search.substring(1); // 过滤掉'?'
-    var pairs = query.split("&");//以&符号拆分
-    for(var i = 0; i < pairs.length; i++)
-    {
-        var pos = pairs[i].indexOf('=');
-        if (pos == -1)
-             continue;
-        var name = pairs[i].substring(0,pos);
-        var value = pairs[i].substring(pos+1);
-        value = decodeURIComponent(value);
-        args[name] = value; 
-    }
-    return args;
-}
+// // 解析URL参数，返回
+// function urlArgs() {
+//     var args = {};
+//     var query = location.search.substring(1); // 过滤掉'?'
+//     var pairs = query.split("&");//以&符号拆分
+//     for(var i = 0; i < pairs.length; i++)
+//     {
+//         var pos = pairs[i].indexOf('=');
+//         if (pos == -1)
+//              continue;
+//         var name = pairs[i].substring(0,pos);
+//         var value = pairs[i].substring(pos+1);
+//         value = decodeURIComponent(value);
+//         args[name] = value; 
+//     }
+//     return args;
+// }
