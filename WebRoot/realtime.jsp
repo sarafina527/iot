@@ -10,18 +10,21 @@ String rootpath = request.getContextPath();
 	<title>实时监控</title>
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/layout.css">
+	<jsp:include page="favicon.jsp"></jsp:include>
 </head>
 <body>
 <div id="centerContainer">
 	<!-- header -->
+	<div class="header-container">
 	<div class="header">
 		<div class="logo"><a href="#">智能检测系统</a></div>
 		<div class="nav">
 			<ul>
 				<li><a href="realtime.jsp">监控中心</a></li>
+				<li><a href="<%=rootpath%>/history.jsp">历史数据</a></li>
 				<li><a href="nodeManage.jsp">节点管理</a></li>
-				<li><a href="#">开发者中心</a></li>
-				<li><a href="#">运行记录</a></li>
+				<!-- <li><a href="#">开发者中心</a></li> -->
+				<!-- <li><a href="#">运行记录</a></li> -->
 				<%
 					Users u = (Users)session.getAttribute("user");
 					if(null == u)
@@ -36,6 +39,7 @@ String rootpath = request.getContextPath();
 				<!-- <li><a href="#">退出</a></li> -->
 			</ul>
 		</div>
+	</div>
 	</div>
 	<div class="wrap">
 		<!-- sidebar -->
@@ -101,8 +105,12 @@ String rootpath = request.getContextPath();
 		</div>
 	</div>
 	
-	<div class="footer"></div>
+	<!-- <div class="footer"></div> -->
 		
+</div>
+</div>
+<div class="footer">
+	<div class="sub-footer">&copy;2016 南京海道普公司 </div>
 </div>
 	<script type="text/javascript" src="<%=rootpath%>/js/jquery-3.1.0.js"></script>
 	<script type="text/javascript" src="<%=rootpath%>/js/common.js"></script>
@@ -116,7 +124,6 @@ String rootpath = request.getContextPath();
 			$('.typelist li').bind('click',clickType);
 			updatePara();//update the active node and type
 			$('.typelist li').click(linechart);
-			box();//大屏居中显示
 			getGaugejson();
 			setInterval(getGaugejson,5000);
 			getLinejson();

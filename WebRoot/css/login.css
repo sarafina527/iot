@@ -1,13 +1,20 @@
 *{	margin: 0;
 	padding: 0;}
 html{ 
+	width: 100%;
 	height:100%;
+	min-width: 1300px;
+	max-height: 1280px;
+	max-width: 1920px;
 	}
 	
-body{
+body{width: 100%;
 	margin:0;
 	padding:0;
 	height:100%;
+	min-width: 1300px;
+	max-width: 1920px;
+	max-height: 1280px;
 	}
 	
 .login_containter{
@@ -16,6 +23,7 @@ body{
 	background-image:url(../img/register/lgbgimg.jpg);
 	background-size:100%;
 	min-width:1000px;
+	background-repeat: no-repeat;
 	}
 .Hailogo{
 	width:7em;
@@ -60,13 +68,22 @@ body{
     background-image: linear-gradient(top, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7));
 	font-family:Microsoft Yahei;
 	position:absolute;
-	left:50%;
-	top:50%;
-	margin-left:100px;
+	right:200px;
+	top:350px;
+/*	margin-left:100px;*/
 	margin-top:-120px;
 	padding-bottom:40px;
 	
 	}
+@media screen and (min-height: 1000px) { 
+.login_mainbody {top: 450px;} 
+} 
+@media screen and (min-width: 1400px) { 
+.login_mainbody {right: 350px;;} 
+} 
+
+/*浏览器尺寸不小于1000px时距离顶部450px*/
+
 	
 .login_mainbody h1{
 	margin-left:10px;
@@ -75,24 +92,45 @@ body{
 	line-height:30px;
 	color:#666;
 	font-family:Microsoft Yahei;
-	float:left;
+/*	float:left;*/
 	margin-top:20px;
 	margin-left:50px;
+	display: block;
+
 	}
+
+.login_mainbody img{
+	margin-top:20px;
+	margin-left:50px;
+	float: left;
+	border-top-left-radius:5px;
+	border-bottom-left-radius:5px;
+	background-color: #fff;
+	border-top:#999 1px solid;
+	border-left:#999 1px solid;
+	border-bottom:#999 1px solid;
+}
 	
 .login_mainbody input{
 	float:left;
-	clear:left;
-	width:300px;
+	/*clear:left;*/
+	width:260px;
 	height:32px;
-	border-radius:5px;
-	border:#999 1px solid;
+	border-top-right-radius:5px;
+	border-bottom-right-radius:5px;
+/*	border-top:#999 1px solid;
+	border-right:#999 1px solid;
+	border-bottom:#999 1px solid;*/
+	border: #999 1px solid;
 	font-size:16px;
 	margin-top:20px;
-	margin-left:50px;
+	/*margin-left:50px;*/
 	font-family:Microsoft Yahei;
 	}
 .login_button{
+	width: 301px !important;
+	border-radius: 5px;
+	margin-left:50px;
 	cursor:pointer;
 	color:#FFF;
 	background: #4477a1;
@@ -108,7 +146,8 @@ body{
 	color:#333;
 	font-size:14px;
 	margin-top:20px;
-	margin-left:56px;
+	margin-left: 92px;/*两个提示信息时的margin值*/
+	/*margin-left:56px;*//*三个提示信息时的margin值*/
 	float:left;
 	}
 
@@ -140,22 +179,25 @@ body{
 	}
 	
 .login_username{
-	background-image:url(../img/register/user.png) !important;
-	background-repeat:no-repeat;
-	text-indent:48px;
+/*	background-image:url(../img/register/user.png) !important;
+	background-repeat:no-repeat;*/
+	text-indent:14px;
 	}
 	
 .login_password{
-	background-image:url(../img/register/lock.png) !important;
-	background-repeat:no-repeat;
-	text-indent:48px;
+/*	background-image:url(../img/register/lock.png) !important;
+	background-repeat:no-repeat;*/
+	text-indent:14px;
 	}
+input:-webkit-autofill {
+     -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+}
 
 .loginerror{
 	position: absolute;
 	bottom: 10px;
-	left: 10px;
+	left: 50px;
 	color: #f00;
-	font-size: 12px;
+	font-size: 14px;
 
 }

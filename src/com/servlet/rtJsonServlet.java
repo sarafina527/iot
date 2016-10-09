@@ -48,10 +48,12 @@ public class rtJsonServlet extends HttpServlet {
 			result = sdDao.queryMultByTypeAndNodeId(type,nodeId);
 			JSONObject json=new JSONObject();  
 		    JSONArray data = new JSONArray();
-		    for(int i=0;i<result.size();i++){
+		    for(int i=result.size()-1;i>=0;i--){
 		    	JSONObject member1 = new JSONObject();
 		    	float value = 0;
-		    	member1.put("label", sdf.format(result.get(i).getDate()));		    	
+//		    	member1.put("label", sdf.format(result.get(i).getDate()));	
+		    	//修改成传时间
+		    	member1.put("label", result.get(i).getTime());	
 		    	if(type.equals("temp")){
 		    		value = result.get(i).getTemp();
 		    	}else if(type.equals("humi")){

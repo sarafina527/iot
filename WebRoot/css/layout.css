@@ -1,11 +1,12 @@
 /*0.通用26B064替换26B064*/
 html, body{
-	min-width: 1300px;
-	max-width:1366px;
+/*	min-width: 1300px;
+	max-width:1366px;*/
+	width: 100%;
 	height: 100%;
 	}
 body{
-	width: 100%;
+	/*width: 100%;*/
 	font-family:  "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 	font-size: 14px;
 	/*text-align: center;*/
@@ -50,6 +51,14 @@ input[type="submit"]{
 fieldset{
 	margin-left:30px;
 }
+
+#centerContainer{
+	width: 100%;
+	min-height: 100%;
+	background:-webkit-gradient(linear, left top, left bottom, from(#add8e6), to(#fff));
+
+}
+
 .float-left{
 	float: left;
 }
@@ -67,12 +76,16 @@ fieldset{
 	clear: both;
 }
 /*1.头部*/
-.header{
-	position: absolute;
-	top: 0;
+.header-container{
 	width: 100%;
-	min-width: 1300px;
-	max-width: 1366px;
+	height: 50px;
+	background-color: #2facb2;
+}
+.header{
+/*	position: absolute;
+	top: 0;*/
+	width: 1300px;
+	margin: 0 auto;
 	/*color: #9d9d9d;*/
 	/*min-width: 500px;*/
 	color: #fff;
@@ -85,10 +98,11 @@ fieldset{
 
 }
 .logo{
-	position: absolute;
-	left: 0;
-	top: 0;
+/*	position: absolute;
+	left: 20px;
+	top: 0;*/
 	/*float: left;*/
+	float: left;
 	font-size: 18px;
 	color: #9d9d9d;	
 	margin-left: 20px;
@@ -148,11 +162,17 @@ li.user{
 	margin-top: -50px;
 	height: 50px;
 	width: 100%;
-	min-width:1300px;
-	max-width:1366px;
+/*	min-width:1300px;
+	max-width:1366px;*/
 	background-color: #5E666E;
 	text-align: center;
 	line-height: 50px;
+}
+.sub-footer{
+	width: 1300px;
+	height: 50px;
+	margin: 0 auto;
+	background-color: #5E666E;
 }
 .re-footer{
 	position: absolute;
@@ -168,46 +188,56 @@ li.user{
 	width: 100%;
 	margin: 0 auto;
 }
-#centerContainer{
+/*#centerContainer{
 	position: absolute;
 	left: 0;
 	top: 0;
 	width: 100%;
 	height: 100%;
-}
+}*/
 
 /*中间部分居中*/
 .wrap{
-	width: 100%;
-	padding-top: 55px;
+/*	position: relative;*/
+	margin: 0 auto;
+	width: 1300px;
+	padding-top: 25px;
 	padding-bottom: 55px;
 	/*margin: 61px auto;*/
-	min-width: 1300px;
-	min-height: calc(100% - 110px);
-	background:-webkit-gradient(linear, left top, left bottom, from(#add8e6), to(#fff));
-
+/*	min-width: 1300px;*/
+/*	min-height: calc(100% - 110px);*/
+/*	height: 800px;*/
+	
 }
+
+.wrap:after {clear:both;content:'.';display:block;width: 0;height: 0;visibility:hidden;}   /*==for FF/chrome/opera/IE8==*/
 /*2.侧边栏*/
+.wrap1>#sidebar{
+	height: 450px;
+}
 #sidebar{
-	position: absolute;
+/*	position: absolute;
 	top: 100px;
-	left: 10px;
+	left: 10px;*/
 	/*margin-top: -240px;*/
 	/*bottom:80px;/*ye浮动*/*/
+	float: left;
+	display: inline-block;
 	overflow: hidden;
 	background: #F5F5F5;
-	width: 200px;
+	margin-top: 50px;
+	margin-left: 30px;
+	width: 180px;
 	/*margin: 10px;*/
 	border-radius: 10px;/*圆角*/
 	/*height: calc(100% - 150px);*/
 	height: 600px;
 	/*min-width: 80px;*/
 	z-index: 100;
-	-webkit-box-shadow:0 0 5px #26B064;  
-	-moz-box-shadow:0 0 5px #26B064;  
-	box-shadow:0 0 5px #26B064; 
+	box-shadow: 0 0px 1px 2px #26B064 inset;
 	
 }
+
 .nodelist{
 	margin: 15px;
 }
@@ -234,8 +264,14 @@ li.user{
 .content{
 	/*background-color: #ccc;
 	height: 200px;*/
+/*	width: 1200px;*/
+	float: right;
+	width: 1050px;
+
+	overflow: hidden;
+	display: inline-block;
 	margin: 10px ;
-	margin-left: 260px;
+	/*margin-left: 260px;*/
 }
 .tab-bar{
 	margin-left: 40px;
@@ -274,11 +310,13 @@ li.user{
 	background: #F5F5F5;
 	/*height: 80px;*/
 	line-height: 2;
-	padding: 20px;
+	padding: 20px 5px;
 	/*margin: 10px 0;*/
-	border-radius: 10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	/*border-radius: 10px;*/
 	/*border-top-left-radius: 0;*/
-	box-shadow: 0 0 1px 2px #26B064;
+	box-shadow: 0 0px 1px 2px #26B064 inset;
 }
 
 .node_id_div{
@@ -319,11 +357,14 @@ li.user{
 .data-table{
 	background: #F5F5F5;
 	padding: 10px 30px;
-	border-radius: 10px;
+/*	border-radius: 10px;*/
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
 	border-top: #ddd solid 1px;
 
 	/*margin: 10px 0;*/
 	overflow: auto;
+
 	box-shadow: 0 0px 1px 2px #26B064 inset;
 
 }
@@ -518,7 +559,8 @@ td span,th span{
 	position: absolute;
 	left: 5px;
 	top: 320px;
-	/*width: 200px;*/
+	cursor: pointer;
+	width: 200px;
 	/*display: inline-block;*/
 }
 .selecttype li.active {
@@ -539,8 +581,17 @@ td span,th span{
 	white-space:nowrap;          /* 不换行 */
     /*background: url(../img/node.png) no-repeat 10px 50%;*/
 /*    background-size: 15px;*/
-    padding-left: 20px;
+  /*  padding-left: 20px;*/
+}
+.selecttype li:hover{
+	background-color: #009966;
+}
+.selecttype li.active:hover
+{
+	background-color: #fff;
+	color: #000;	
 }
 .typelist li span{
 	visibility: hidden;
+	display: none;
 }

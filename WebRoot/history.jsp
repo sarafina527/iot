@@ -12,17 +12,20 @@ String rootpath = request.getContextPath();
 	<link rel="stylesheet" type="text/css" href="<%=rootpath%>/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="<%=rootpath%>/css/layout.css">
 	<link rel="stylesheet" type="text/css" href="<%=rootpath%>/css/pageGroup.css"/>
+	<jsp:include page="favicon.jsp"></jsp:include>
 </head>
 <body>
 	<div id="centerContainer">
 	<!-- header -->
+	<div class="header-container">
 	<div class="header">
 		<div class="logo"><a href="#">智能检测系统</a></div>
 		<div class="nav">
 			<ul>
 				<li><a href="<%=rootpath%>/realtime.jsp">监控中心</a></li>
+				<li><a href="<%=rootpath%>/history.jsp">历史数据</a></li>
 				<li><a href="<%=rootpath%>/nodeManage.jsp">节点管理</a></li>
-				<li><a href="#">开发者中心</a></li>
+				<!-- <li><a href="#">开发者中心</a></li> -->
 				<!-- <li><a href="#">运行记录</a></li> -->
 				<%
 					Users u = (Users)session.getAttribute("user");
@@ -39,6 +42,7 @@ String rootpath = request.getContextPath();
 			</ul>
 		</div>
 	</div>
+	</div>	
 	<div class="wrap">
 		<!-- sidebar -->
 		<div class="sidebar" id="sidebar">
@@ -60,7 +64,7 @@ String rootpath = request.getContextPath();
 		<div class="content">
 			<ul class="tab-bar">
 				<li><a href="<%=rootpath%>/realtime.jsp">实时监控</a></li>
-				<li class="active"><a href="">历史数据</a></li>
+				<li class="active"><a href="<%=rootpath%>/history.jsp">历史数据</a></li>
 			</ul>
 			<!-- 日期查询 -->
 			<form action="<%=rootpath%>/servlet/HistoryServlet" class="search">
@@ -205,10 +209,13 @@ String rootpath = request.getContextPath();
 			</div>
 		</div>
 	</div>
-
+</div>
+<div class="footer">
+	<div class="sub-footer">&copy;2016 南京海道普公司 </div>
+</div>
 	
-	<div class="footer"></div>
-	</div>
+<!-- 	<div class="footer"></div>
+	</div> -->
 	<script type="text/javascript" src="<%=rootpath%>/js/jquery-3.1.0.js"></script>
 	<script type="text/javascript" src="<%=rootpath%>/js/jquery-1.8.3.min.js"></script>
 	<script type="text/javascript" src="<%=rootpath%>/js/common.js"></script>
@@ -237,7 +244,6 @@ String rootpath = request.getContextPath();
 			updatePara();//根据url参数更新页面选择项样式
 			tablestyle();//表格奇偶行样式区分
 			defaultdate();//设置默认日期
-			box();
 		});
     </script>
 	

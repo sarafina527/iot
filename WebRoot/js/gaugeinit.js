@@ -233,7 +233,7 @@ function linechart() {
             dataSource: {
                 "chart": {
                     "caption": "趋势图",
-                    "xAxisName": "Date",
+                    "xAxisName": "时间(time)",
                     "yAxisName": $('.typelist li.active').text(),
                     //Cosmetics
                     "lineThickness" : "2",

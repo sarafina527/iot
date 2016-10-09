@@ -11,17 +11,20 @@ String rootpath = request.getContextPath();
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/layout.css">
     <link rel="stylesheet" type="text/css" href="css/nodeManage.css">
+    <jsp:include page="favicon.jsp"></jsp:include>
 </head>
 <body>
 	<div id="centerContainer">
+	<div class="header-container">
 	<div class="header">
 		<div class="logo"><a href="#">智能检测系统</a></div>
 		<div class="nav">
 			<ul>
 				<li><a href="<%=rootpath%>/realtime.jsp">监控中心</a></li>
+				<li><a href="<%=rootpath%>/history.jsp">历史数据</a></li>
 				<li><a href="<%=rootpath%>/nodeManage.jsp">节点管理</a></li>
-				<li><a href="#">开发者中心</a></li>
-				<li><a href="#">运行记录</a></li>
+				<!-- <li><a href="#">开发者中心</a></li> -->
+				<!-- <li><a href="#">运行记录</a></li> -->
 				<%
 					Users u = (Users)session.getAttribute("user");
 					if(null == u)
@@ -41,8 +44,9 @@ String rootpath = request.getContextPath();
 			</ul>
 		</div>
 	</div>
-	<div class="wrap1">
-		<div id="sidebar" class="sidebar">
+	</div>
+	<div class="wrap">
+		<div id="sidebar" class="sidebar sidebarNodemanage">
 			<ul class="nodelist">
 			<%  
 				if(null != u)
@@ -104,19 +108,18 @@ String rootpath = request.getContextPath();
                         	
                     </tbody>
                 </table>
+                <div style="color:red;margin:10px;">*修改后回车或点击任意其他区域后更新</div>
             </div>
 
 			
 			
 		</div>
 	</div>
-	
-	<div class="footer">
-		<div class="copyright">
-             <!-- ©  -->2016 Najing Hadoop; user contributions licensed under 
-		</div>
 	</div>
-	</div>
+</div>
+<div class="footer">
+	<div class="sub-footer"> &copy;2016 南京海道普公司 </div>
+</div>
     <script type="text/javascript" src="<%=rootpath%>/js/jquery-3.1.0.js"></script>
     <script type="text/javascript" src="<%=rootpath%>/js/nodeManage.js"></script>
     <script type="text/javascript" src="<%=rootpath%>/js/pageCenter.js"></script>
@@ -124,7 +127,6 @@ String rootpath = request.getContextPath();
         $(document).ready(function(){
             $('.nodelist li').bind('click',clickNode);
             initNode();
-             box();//当浏览器页面发生改变时，DIV随着页面的改变居中。
         });
     </script>
 

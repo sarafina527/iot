@@ -26,20 +26,23 @@ public class realtimeJson extends HttpServlet {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			sensordata obj = (sensordata)sdD.queryTop1ByNodeId(nodeId);
-			JSONObject json=new JSONObject();
-			json.put("date", sdf.format(obj.getDate()));
-			json.put("time", obj.getTime());
-			DecimalFormat decimalFormat=new DecimalFormat(".00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
-			json.put("light", decimalFormat.format(obj.getLight()));
-			json.put("temp", decimalFormat.format(obj.getTemp()));
-			json.put("humi", decimalFormat.format(obj.getHumi()));
-			json.put("soiltemp", decimalFormat.format(obj.getSoiltemp()));
-			json.put("soilhumi", decimalFormat.format(obj.getSoilhumi()));
-			json.put("count", ++count);
-			response.setContentType("text/html");
-			PrintWriter out = response.getWriter();
-			System.out.println(json.toString());
-			out.print(json.toString());
+			if(obj!=null){
+				JSONObject json=new JSONObject();
+				json.put("date", sdf.format(obj.getDate()));
+				json.put("time", obj.getTime());
+				DecimalFormat decimalFormat=new DecimalFormat(".00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
+				json.put("light", decimalFormat.format(obj.getLight()));
+				json.put("temp", decimalFormat.format(obj.getTemp()));
+				json.put("humi", decimalFormat.format(obj.getHumi()));
+				json.put("soiltemp", decimalFormat.format(obj.getSoiltemp()));
+				json.put("soilhumi", decimalFormat.format(obj.getSoilhumi()));
+				json.put("count", ++count);
+				response.setContentType("text/html");
+				PrintWriter out = response.getWriter();
+				System.out.println(json.toString());
+				out.print(json.toString());
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
