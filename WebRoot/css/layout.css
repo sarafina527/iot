@@ -239,7 +239,9 @@ li.user{
 	box-shadow: 0 0px 1px 2px #26B064 inset;
 	
 }
-
+.sidebarNodemanage{
+	height: 401px !important;
+}
 .nodelist{
 	margin: 15px;
 	cursor: pointer;
@@ -353,6 +355,7 @@ li.user{
 	background-size: 24px;
 	padding-right:20px; 
 	margin-right: 20px;
+	text-align: center;
 
 }
 
@@ -433,7 +436,7 @@ td span,th span{
 	border-radius: 10px;
 	box-shadow: 0 0 1px 2px #26B064 inset;
 	height: 280px;
-	margin: 10px 0;
+	margin-top: 5px;
 
 }
 .anlysis div{
@@ -605,4 +608,10 @@ td span,th span{
 .typelist li span{
 	visibility: hidden;
 	display: none;
+}
+
+.attention{
+	color: #cc3333;
+	margin: 20px 0 0 10px;
+	font-weight: bold;
 }

@@ -35,3 +35,18 @@ function getNowFormatDate() {
     return currentdate;
    
 }
+
+//实时数据及历史数据页面sidebar高度调整
+function AdjustColumnsHeight() {
+    var sideCol = window.document.getElementById('sidebar');
+    var mainCol = window.document.getElementsByClassName('content')[0];
+ 
+    var hsideCol = sideCol.offsetHeight;
+    var hmainCol = mainCol.offsetHeight;
+ 
+    // var maxHeight = Math.max( hsideCol , hmainCol)-40;
+    var maxHeight = hmainCol-40;
+    sideCol.style.height = maxHeight + 'px';
+    hmainCol.style.height = maxHeight + 'px';
+}
+

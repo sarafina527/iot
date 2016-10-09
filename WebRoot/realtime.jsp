@@ -136,6 +136,7 @@ String rootpath = request.getContextPath();
 		 //    FusionCharts.ready(solidhumi);
 		 	FusionCharts.ready(gaugechart);
 		    FusionCharts.ready(linechart);
+		    AdjustColumnsHeight();//调整sidebar高度
 			
 		});
  		

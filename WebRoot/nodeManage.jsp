@@ -108,7 +108,7 @@ String rootpath = request.getContextPath();
                         	
                     </tbody>
                 </table>
-                <div style="color:red;margin:10px;">*修改后回车或点击任意其他区域后更新</div>
+                <div class="attention">*修改后回车或点击任意其他区域后更新</div>
             </div>
 
 			
@@ -127,6 +127,7 @@ String rootpath = request.getContextPath();
         $(document).ready(function(){
             $('.nodelist li').bind('click',clickNode);
             initNode();
+		
         });
     </script>
 
