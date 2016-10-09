@@ -244,6 +244,7 @@ String rootpath = request.getContextPath();
 			updatePara();//根据url参数更新页面选择项样式
 			tablestyle();//表格奇偶行样式区分
 			defaultdate();//设置默认日期
+			AdjustColumnsHeight();//调整sidebar高度
 		});
     </script>
 	
