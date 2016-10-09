@@ -242,6 +242,7 @@ li.user{
 
 .nodelist{
 	margin: 15px;
+	cursor: pointer;
 }
 .nodelist li{
 	font-size: 16px;
@@ -262,6 +263,14 @@ li.user{
 	color: #fff;
 }
 
+.nodelist li:hover{
+	background-color: #009966;
+	color: #fff;
+}
+.nodelist li.active:hover{
+	background-color: #26B064;
+	color: #000;
+}
 /*3.主体*/
 .content{
 	/*background-color: #ccc;
