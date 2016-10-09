@@ -119,8 +119,8 @@ String rootpath = request.getContextPath();
 			box();//大屏居中显示
 			getGaugejson();
 			setInterval(getGaugejson,5000);
-			// getLinejson();
-			// setInterval(getLinejson,5000);
+			getLinejson();
+			setInterval(getLinejson,5000);
 			// console.log(rtjson);
 			// FusionCharts.ready(temp);
 		 //    FusionCharts.ready(humi);

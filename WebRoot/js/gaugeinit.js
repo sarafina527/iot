@@ -253,11 +253,17 @@ function linechart() {
                 "rendered": function(evtObj, argObj){
                     setInterval(function () {
                         var chartRef = FusionCharts("lineID"); 
-                        var url = 'http://localhost:8080/iot/servlet/rtJsonServlet'+"?nodeId"+$('.nodelist li.active span').text()+"&type="+ $('.typelist li.active span').text();
-                        console.log(url);
-                        chartRef.setChartDataUrl(url,"json")       
-                        // chartRef.setJSONData(linejson);//传数据
-                        // console.log(linejson);
+                        // var url = 'http://localhost:8080/iot/servlet/rtJsonServlet'+"?nodeId"+$('.nodelist li.active span').text()+"&type="+ $('.typelist li.active span').text();
+                        // console.log(url);
+                        // chartRef.setChartDataUrl(url,"json") 
+                        var nativeJSONObj = FusionCharts("lineID").getJSONData(); 
+                        var nativeJsonStr = JSON.stringify(nativeJSONObj);
+                        var tail = nativeJsonStr.indexOf("data")-1;
+                        var nativechart = nativeJsonStr.slice(0,tail);
+                        // var jsondata =  '{ "chart":{}, "data":'+linejson+' } ';  
+                        var jsondata = nativechart+'"data":'+linejson+'}';
+                        chartRef.setJSONData(jsondata,"json");//传数据
+                        // console.log(jsondata);
                     }, 5000);
                 }
             }
