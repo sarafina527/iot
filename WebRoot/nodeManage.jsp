@@ -97,7 +97,7 @@ String rootpath = request.getContextPath();
                             <td><%=sensor_type %></td>
                             <td><input type="text" value="<%=max_alert %>" onchange="updateMaxAlert(<%=sensor_id%>,this.value)"></input></td>
                             <td><input type="text" value="<%=min_alert %>" onchange="updateMinAlert(<%=sensor_id%>,this.value)"></input></td>
-                            <td><input type="text" value="<%=location %>" onchange="updateLocation(<%=node_id%>,this.value)"></input></td>
+                            <td><input type="text" class="location" value="<%=location %>" onchange="updateLocation(<%=node_id%>,this.value)"></input></td>
                                                  
                         </tr>  
                                   

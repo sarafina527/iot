@@ -28,11 +28,25 @@ public class sensormetaDao {
 		Statement stmt = conn.createStatement();
 		ResultSet rs = stmt.executeQuery(sql);
 		sensormeta m = null;
+		String type = null;
 		while(rs.next()){
 			m = new sensormeta();
 			m.setId(rs.getInt("id"));
 			m.setSensor_id(rs.getInt("sensor_id"));
-			m.setSensor_type(rs.getString("sensor_type"));
+			type = rs.getString("sensor_type");
+			if(type=="光照传感器"||type.equals("光照传感器")){
+				type+="(Lx)";
+			}else if(type =="温度传感器"||type.equals("温度传感器")){
+				type+="(°C)";
+			}else if(type=="湿度传感器"||type.equals("湿度传感器")){
+				type+="(g/m3)";
+			}else if(type=="土壤温度传感器"||type.equals("土壤温度传感器")){
+				type+="(°C)";
+			}else if(type=="土壤湿度传感器"||type.equals("土壤湿度传感器")){
+				type+="(g/m3)";
+			}
+			System.out.println(type);
+			m.setSensor_type(type);
 			m.setNode_id((rs.getInt("node_id")));
 			m.setDescription(rs.getString("description"));
 			m.setLocation(rs.getString("location"));
