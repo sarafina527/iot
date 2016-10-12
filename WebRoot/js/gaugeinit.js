@@ -81,7 +81,8 @@ function gaugechart() {
                     "bgCOlor": "#ffffff",
                     "borderAlpha": "0",
                     "cylFillColor": "#008ee4",
-                    "showValue":true
+                    "showValue":true,
+                    "valueFontColor" : "#000000",//字体颜色
                 },
                 "value":rtjson.humi
             },
@@ -106,14 +107,16 @@ function gaugechart() {
                     "upperlimit": "25000",
                     "lowerlimit": "200",
                     "captionPadding":"30",
-                    "showshadow":"0",
-                    "showvalue": "1",
-                    "useColorNameAsValue":"1",
+                    "numberSuffix": "Lx",
+                    //"showshadow":"0",
+                    //"showvalue": "1",
+                    //"useColorNameAsValue":"1",
                     "placeValuesInside":"1",
                     "valueFontSize": "16",
                     //Cosmetics
                     "showborder": "0",
                     "bgcolor": "#FFFFFF",
+                    "valueFontColor" : "#000000",//字体颜色
                     "showValue":true
                 },
                 "colorrange": {
