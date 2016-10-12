@@ -83,3 +83,68 @@ Date.prototype.Format = function (fmt) { //author: meizz
     return fmt;
 }
 
+//获取MaxMin对象，并控制表格异常数据样式
+function getMaxMin(){
+    var requestData = {nodeId:$('.nodelist li.active span').text()};
+    var curl = location.href;
+    var head = curl.slice(0,curl.indexOf('iot'))+'iot/';
+    $.get(head+'servlet/MaxMinServlet',requestData,function(data){
+        window.mmjson = JSON.parse(data);//获取当前第一条数据  全局变量存储最新数据
+        // console.log(mmjson);
+        var label;
+
+        $('td.light').each(function(){
+        	var value = parseInt($(this).text());
+        	if(value<mmjson.light_min||value>mmjson.light_max){
+        		$(this).addClass('unnormal');
+        		label = $(this).parent().children().eq(7);
+        		label.text("指标异常");
+        	}
+        });
+        $('td.temp').each(function(){
+        	var value = parseInt($(this).text());
+        	if(value<mmjson.temp_min||value>mmjson.temp_max){
+        		$(this).addClass('unnormal');
+				label = $(this).parent().children().eq(7);
+        		label.text("指标异常");
+        		if(!label.hasClass('unnormal')){
+        			label.addClass('unnormal');
+        		}
+        	}
+        });
+        $('td.humi').each(function(){
+        	var value = parseInt($(this).text());
+        	if(value<mmjson.humi_min||value>mmjson.humi_max){
+        		$(this).addClass('unnormal');
+        		label = $(this).parent().children().eq(7);
+        		label.text("指标异常");
+        		if(!label.hasClass('unnormal')){
+        			label.addClass('unnormal');
+        		}
+        	}
+        });
+        $('td.soiltemp').each(function(){
+        	var value = parseInt($(this).text());
+        	if(value<mmjson.soiltemp_min||value>mmjson.soiltemp_max){
+        		$(this).addClass('unnormal');
+        		label = $(this).parent().children().eq(7);
+        		label.text("指标异常");
+        		if(!label.hasClass('unnormal')){
+        			label.addClass('unnormal');
+        		}
+        	}
+        });
+        $('td.soilhumi').each(function(){
+        	var value = parseInt($(this).text());
+        	if(value<mmjson.soilhumi_min||value>mmjson.soilhumi_max){
+        		$(this).addClass('unnormal');
+        		label = $(this).parent().children().eq(7);
+        		label.text("指标异常");
+        		if(!label.hasClass('unnormal')){
+        			label.addClass('unnormal');
+        		}
+        	}
+        });
+
+    });
+}

@@ -78,11 +78,11 @@ public class HistoryServlet extends HttpServlet {
 				tempmin = tempi;
 			}
 			humiave+=humii;
-			if(tempmax<humii){
-				tempmax = humii;
+			if(humimax<humii){
+				humimax = humii;
 			}
-			if(tempmin>humii){
-				tempmin = humii;
+			if(humimin>humii){
+				humimin = humii;
 			}
 			soiltempave+=soiltempi;
 			if(soiltempmax<soiltempi){

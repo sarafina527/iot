@@ -128,6 +128,7 @@ String rootpath = request.getContextPath();
 			setInterval(getGaugejson,5000);
 			getLinejson();
 			setInterval(getLinejson,5000);
+			getMaxMin();
 			// console.log(rtjson);
 			// FusionCharts.ready(temp);
 		 //    FusionCharts.ready(humi);

@@ -47,6 +47,6 @@ function AdjustColumnsHeight() {
     // var maxHeight = Math.max( hsideCol , hmainCol)-40;
     var maxHeight = hmainCol-40;
     sideCol.style.height = maxHeight + 'px';
-    hmainCol.style.height = maxHeight + 'px';
+    // hmainCol.style.height = maxHeight + 'px';
 }
 

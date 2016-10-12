@@ -108,11 +108,11 @@ String rootpath = request.getContextPath();
 					      		<tr>
 					      			<td><%=sdf.format(d.getDate()) %></td>
 					      			<td><%=d.getTime() %></td>
-						            <td><%=d.getLight() %></td>
-						            <td><%=d.getTemp() %></td>
-						            <td><%=d.getHumi() %></td>
-						            <td><%=d.getSoiltemp() %></td>
-						            <td><%=d.getSoilhumi() %></td>
+						            <td class="light"><%=d.getLight() %></td>
+						            <td class="temp"><%=d.getTemp() %></td>
+						            <td class="humi"><%=d.getHumi() %></td>
+						            <td class="soiltemp"><%=d.getSoiltemp() %></td>
+						            <td class="soilhumi"><%=d.getSoilhumi() %></td>
 						            <td>指标正常</td>
 					      		</tr>
 					      		<%
@@ -245,6 +245,7 @@ String rootpath = request.getContextPath();
 			tablestyle();//表格奇偶行样式区分
 			defaultdate();//设置默认日期
 			AdjustColumnsHeight();//调整sidebar高度
+			getMaxMin();
 		});
     </script>
 	

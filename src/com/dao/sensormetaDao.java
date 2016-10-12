@@ -113,21 +113,21 @@ public class sensormetaDao {
 		maxmin mm = new maxmin();
 		List<sensormeta> metas = queryByNodeId(node_id);
 		for (sensormeta meta : metas) {
-			if(meta.getSensor_type().equals("光照传感器")){
+			if(meta.getSensor_type().contains("光照传感器")){
 				mm.setLight_max(meta.getMax_alert());
 				mm.setLight_min(meta.getMin_alert());
-			}else if(meta.getSensor_type().equals("温度传感器")){
-				mm.setTemp_max(meta.getMax_alert());
-				mm.setTemp_min(meta.getMin_alert());
-			}else if(meta.getSensor_type().equals("湿度传感器")){
-				mm.setHumi_max(meta.getMax_alert());
-				mm.setHumi_min(meta.getMin_alert());
-			}else if(meta.getSensor_type().equals("土壤温度传感器")){
+			}else if(meta.getSensor_type().contains("土壤温度传感器")){
 				mm.setSoiltemp_max(meta.getMax_alert());
 				mm.setSoiltemp_min(meta.getMin_alert());
-			}else if(meta.getSensor_type().equals("土壤湿度传感器")){
+			}else if(meta.getSensor_type().contains("土壤湿度传感器")){
 				mm.setSoilhumi_max(meta.getMax_alert());
 				mm.setSoilhumi_min(meta.getMin_alert());
+			}else if(meta.getSensor_type().contains("温度传感器")){
+				mm.setTemp_max(meta.getMax_alert());
+				mm.setTemp_min(meta.getMin_alert());
+			}else if(meta.getSensor_type().contains("湿度传感器")){
+				mm.setHumi_max(meta.getMax_alert());
+				mm.setHumi_min(meta.getMin_alert());
 			}else{
 				System.out.println("maxmin error!");
 			}

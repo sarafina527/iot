@@ -15,6 +15,14 @@ function getLinejson(){
         window.linejson = data;
     });
 }
+//获取MaxMin对象
+function getMaxMin(){
+    var requestData = {nodeId:$('.nodelist li.active span').text()};
+    $.get('servlet/MaxMinServlet',requestData,function(data){
+        window.mmjson = JSON.parse(data);//获取当前第一条数据  全局变量存储最新数据
+        console.log(mmjson[$('.typelist li.active span').text()+'_max']);
+    });
+}
 
 //仪表盘5个子图
 function gaugechart() {
@@ -248,6 +256,32 @@ function linechart() {
                     "showAlternateHGridColor" : "0",                    
                 },
                 "data":linejson,
+                "trendlines": [
+                {
+                    "line": [
+                        {
+                            "startvalue": mmjson[$('.typelist li.active span').text()+'_max'],
+                            "endvalue": "",
+                            "istrendzone": "",
+                            "valueonright": "1",
+                            "color": "fda813",
+                            "displayvalue": "max",
+                            "showontop": "1",
+                            "thickness": "2"
+                        },
+                        {
+                            "startvalue": mmjson[$('.typelist li.active span').text()+'_min'],
+                            "endvalue": "",
+                            "istrendzone": "",
+                            "valueonright": "1",
+                            "color": "f77027",
+                            "displayvalue": "min",
+                            "showontop": "1",
+                            "thickness": "2"
+                        }
+                    ]
+                }
+            ]
             },
             "events":{
                 "rendered": function(evtObj, argObj){
@@ -259,11 +293,12 @@ function linechart() {
                         var nativeJSONObj = FusionCharts("lineID").getJSONData(); 
                         var nativeJsonStr = JSON.stringify(nativeJSONObj);
                         var tail = nativeJsonStr.indexOf("data")-1;
-                        var nativechart = nativeJsonStr.slice(0,tail);
+                        var nativecharthead = nativeJsonStr.slice(0,tail);
+                        var nativecharttail = nativeJsonStr.slice(nativeJsonStr.indexOf("trendlines"));
                         // var jsondata =  '{ "chart":{}, "data":'+linejson+' } ';  
-                        var jsondata = nativechart+'"data":'+linejson+'}';
+                        var jsondata = nativecharthead+'"data":'+linejson+',"'+nativecharttail;
                         chartRef.setJSONData(jsondata,"json");//传数据
-                        // console.log(jsondata);
+                        console.log(jsondata);
                     }, 5000);
                 }
             }
