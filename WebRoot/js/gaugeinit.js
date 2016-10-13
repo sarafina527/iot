@@ -55,10 +55,15 @@ function gaugechart() {
             },
             "events" :{
                 "initialized": function (evt, arg) {
+                    if(rtjson.temp>mmjson.temp_max||rtjson.temp<mmjson.temp_min){
+                        FusionCharts.items["tempID"].setChartAttribute("thmFillColor" , "#ff0000");
+                    }
                     var dataUpdate = setInterval(function () {                        
                         FusionCharts.items["tempID"].feedData("&value="+rtjson.temp);//传数据
-                    }, 5000);//设置更新频率5000ms
-                    
+                        if(rtjson.temp>mmjson.temp_max||rtjson.temp<mmjson.temp_min){
+                            FusionCharts.items["tempID"].setChartAttribute("thmFillColor" , "#ff0000");
+                        }
+                    }, 5000);//设置更新频率5000ms                                      
                 },
                 
             }
@@ -88,8 +93,14 @@ function gaugechart() {
             },
             "events":{
                 "rendered": function(evtObj, argObj){
+                    if(rtjson.humi>mmjson.humi_max||rtjson.humi<mmjson.humi_min){
+                        FusionCharts.items["humiID"].setChartAttribute("cylFillColor" , "#ff0000");
+                    }
                     setInterval(function () {
                         FusionCharts.items["humiID"].feedData("&value="+rtjson.humi);//传数据
+                        if(rtjson.humi>mmjson.humi_max||rtjson.humi<mmjson.humi_min){
+                            FusionCharts.items["humiID"].setChartAttribute("cylFillColor" , "#ff0000");
+                        }
                     }, 5000);
                 }
             }
@@ -110,7 +121,7 @@ function gaugechart() {
                     "numberSuffix": "Lx",
                     //"showshadow":"0",
                     //"showvalue": "1",
-                    //"useColorNameAsValue":"1",
+                    // "useColorNameAsValue":"1",
                     "placeValuesInside":"1",
                     "valueFontSize": "16",
                     //Cosmetics
@@ -121,23 +132,23 @@ function gaugechart() {
                 },
                 "colorrange": {
                     "color": [
-                        {
-                            "minvalue": "25000",
-                            "maxvalue": "30000",
+                        {   
+                            "minvalue": mmjson.light_max.toString(),
+                            "maxvalue":"1000000000",
                             "label": "超出上界！",
                             "code": "#ff0000"
                         }, 
                         {
-                            "minvalue": "200",
-                            "maxvalue": "25000",
+                            "minvalue": mmjson.light_min.toString(),
+                            "maxvalue": mmjson.light_max.toString(),
                             "label": "指标正常",
                             "code": "#00ff00"
                         }, 
                         {
-                            "minvalue": "",
-                            "maxvalue": "200",
+                            "maxvalue": mmjson.light_min.toString(),
+                            "minvalue": "-11000",
                             "label": "超出下界",
-                            "code": "#ff9900"
+                            "code": "#ff0000"
                         }
                     ]
                 },
@@ -151,7 +162,7 @@ function gaugechart() {
                         //     FusionCharts.items["light"].feedData("&value="+data);//传数据
                         // });
                         FusionCharts.items["lightID"].feedData("&value="+rtjson.light);//传数据
-                        // console.log(rtjson.count);
+                        console.log(rtjson.light+" "+mmjson.light_min);
                     }, 5000);
                 }
             }
@@ -171,7 +182,7 @@ function gaugechart() {
                     "numberSuffix": "°C",
                     "decimals" : "2",
                     "showhovereffect": "1",
-                    "thmFillColor": "#e44b23",                
+                    "thmFillColor": "#C0C0C0",                
                     "thmOriginX": "100",
                     "theme" : "fint",
                     "bgcolor":"#ffffff",
@@ -182,9 +193,14 @@ function gaugechart() {
             },
             "events" :{
                 "initialized": function (evt, arg) {
-                    var dataUpdate = setInterval(function () {
-                       
+                    if(rtjson.soiltemp>mmjson.soiltemp_max||rtjson.soiltemp<mmjson.soiltemp_min){
+                        FusionCharts.items["soiltempID"].setChartAttribute("thmFillColor" , "#ff0000");
+                    }
+                    var dataUpdate = setInterval(function () {                       
                         FusionCharts.items["soiltempID"].feedData("&value="+rtjson.soiltemp);//传数据
+                        if(rtjson.soiltemp>mmjson.soiltemp_max||rtjson.soiltemp<mmjson.soiltemp_min){
+                        FusionCharts.items["soiltempID"].setChartAttribute("thmFillColor" , "#ff0000");
+                    }
                        
                     }, 5000);
                 }  
@@ -213,9 +229,15 @@ function gaugechart() {
             },
             "events":{
                 "rendered": function(evtObj, argObj){
+                    if(rtjson.soilhumi>mmjson.soilhumi_max||rtjson.soilhumi<mmjson.soilhumi_min){
+                        FusionCharts.items["soilhumiID"].setChartAttribute("cylFillColor" , "#ff0000");
+                    }
                     setInterval(function () {
-                        
+                        // console.log(FusionCharts.items["soilhumiID"].getChartAttribute( "cylFillColor"));
                         FusionCharts.items["soilhumiID"].feedData("&value="+rtjson.soilhumi);//传数据
+                        if(rtjson.soilhumi>mmjson.soilhumi_max||rtjson.soilhumi<mmjson.soilhumi_min){
+                            FusionCharts.items["soilhumiID"].setChartAttribute("cylFillColor" , "#ff0000");
+                        }
                         $('.status span').text($('.nodelist li.active span').text());
                     }, 5000);
                 }
@@ -278,7 +300,7 @@ function linechart() {
                             "istrendzone": "",
                             "valueonright": "1",
                             "color": "f77027",
-                            "displayvalue": "min",
+                            "displayvalue": "警戒值",
                             "showontop": "1",
                             "thickness": "2"
                         }
@@ -301,7 +323,7 @@ function linechart() {
                         // var jsondata =  '{ "chart":{}, "data":'+linejson+' } ';  
                         var jsondata = nativecharthead+'"data":'+linejson+',"'+nativecharttail;
                         chartRef.setJSONData(jsondata,"json");//传数据
-                        console.log(jsondata);
+                        // console.log(jsondata);
                     }, 5000);
                 }
             }
