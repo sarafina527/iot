@@ -15,36 +15,36 @@ String rootpath = request.getContextPath();
 </head>
 <body>
 	<div id="centerContainer">
-	<div class="header-container">
-	<div class="header">
-		<div class="logo"><a href="#">智能检测系统</a></div>
-		<div class="nav">
-			<ul>
-				<li><a href="<%=rootpath%>/realtime.jsp">监控中心</a></li>
-				<li><a href="<%=rootpath%>/history.jsp">历史数据</a></li>
-				<li><a href="<%=rootpath%>/nodeManage.jsp">节点管理</a></li>
-				<!-- <li><a href="#">开发者中心</a></li> -->
-				<!-- <li><a href="#">运行记录</a></li> -->
-				<%
-					Users u = (Users)session.getAttribute("user");
-					if(null == u)
-					{
-					    response.sendRedirect(rootpath+"/login.jsp");
-					    return;
-					}else{
-						%><li class="user"><a href="#"><%=u.getUsername()%></a></li>
+		<div class="header-container">
+			<div class="header">
+				<div class="logo"><a href="#">智能检测系统</a></div>
+				<div class="nav">
+					<ul>
+						<li><a href="<%=rootpath%>/realtime.jsp">监控中心</a></li>
+						<li><a href="<%=rootpath%>/history.jsp">历史数据</a></li>
+						<li><a href="<%=rootpath%>/nodeManage.jsp">节点管理</a></li>
+						<!-- <li><a href="#">开发者中心</a></li> -->
+						<!-- <li><a href="#">运行记录</a></li> -->
 						<%
-					}
-					int node_id = 1;
-					if(request.getParameter("nodeId")!=null){
-						node_id = Integer.parseInt(request.getParameter("nodeId"));
-					}
-				%>
-				<!-- <li><a href="#">退出</a></li> -->
-			</ul>
+							Users u = (Users)session.getAttribute("user");
+							if(null == u)
+							{
+							    response.sendRedirect(rootpath+"/login.jsp");
+							    return;
+							}else{
+								%><li class="user"><a href="#"><%=u.getUsername()%></a></li>
+								<%
+							}
+							int node_id = 1;
+							if(request.getParameter("nodeId")!=null){
+								node_id = Integer.parseInt(request.getParameter("nodeId"));
+							}
+						%>
+						<!-- <li><a href="#">退出</a></li> -->
+					</ul>
+				</div>
+			</div>
 		</div>
-	</div>
-	</div>
 	<div class="wrap">
 		<div id="sidebar" class="sidebar sidebarNodemanage">
 			<ul class="nodelist">

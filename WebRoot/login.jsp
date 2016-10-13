@@ -18,9 +18,9 @@
 		        <img src="img/register/lock.png">
 		        <input type="password" class="login_password" name="password" placeholder="登录密码" />
 		        <input type="submit" class="login_button" value="登录"  />
-		        <a href="#">忘记密码</a>
+		        <a href="password_find.jsp">忘记密码</a>
 		        <!-- <a href="#" id="trial">点击试用</a> -->
-		        <a href="register.html">免费注册</a>
+		        <a href="register.jsp">免费注册</a>
 		        <p id="testuser"></p>
 			</form>
 		</div>

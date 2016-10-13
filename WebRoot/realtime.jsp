@@ -32,7 +32,7 @@ String rootpath = request.getContextPath();
 					    response.sendRedirect(rootpath+"/login.jsp");
 					    return;
 					}else{
-						%><li class="user"><a href="#"><%=u.getUsername()%></a></li>
+						%><li class="user"><a href="usermsg.jsp"><%=u.getUsername()%></a></li>
 						<%
 					}
 				%>

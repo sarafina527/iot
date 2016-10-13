@@ -1,0 +1,238 @@
+html{ 
+	width:100%;
+	height:100%;
+	}
+	
+body{
+	width:100%;
+	height:100%;
+	}
+
+.Hailogo{
+	width:7em;
+	position:absolute;
+	top:10px;
+	left:50px;
+	}
+	
+.webname{
+/*	width:560px;
+	height:80px;
+	background-color:#FFF;
+	border-radius:10px;*/
+	width:560px;
+	display:inline; 
+	text-align: left; 
+	padding: 14px; 
+	font-family: STXingkai; 
+	font-size: 44px;
+	line-height:80px; 
+	color: rgba(49,49, 49, 0.5);
+	text-shadow: 1px 1px 2px #888, 0 0 0 #000;
+	
+	position:absolute;
+	top:10px;
+	left:170px;
+	 white-space:nowarp;  
+/*	background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(rgba(0, 128, 0, 1)), to(rgba(51, 51, 51, 1)));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	-webkit-text-stroke: 0.01em rgba(0, 128, 0, 1);*/
+	}
+	
+.register_containter{
+	width:100%;
+	height:100%;
+	background-image:url(../img/register/rgbgimg.jpg);
+	background-size:100%;
+	min-width:1000px;
+	}
+	
+.register_mainbody{
+	width:540px;
+	height:340px;
+	border-radius:10px;
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(255, 255, 255, 0.7)), color-stop(1, rgba(255, 255, 255, 0.7)));
+	background-image: -ms-linear-gradient(top,rgba(255, 255, 255, 0.7),rgba(255, 255, 255, 0.7));
+    background-image: -moz-linear-gradient(top,rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7));
+    background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7));
+    background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7));
+    background-image: linear-gradient(top, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7));
+/*	border-top:#999 1px solid;
+	border-bottom:#999 1px solid;*/
+	padding:30px 20px 20px 30px;
+	position:absolute;
+	left:50%;
+	margin-left:-250px;
+	margin-top:12%;
+	float:left;
+	}
+ 	
+.register_header1{
+	margin-left:10px;
+	font-weight:bold;
+	font-size:22px;
+	line-height:30px;
+	color:#666;
+	font-family:Microsoft Yahei;
+	float:left;
+	}
+	
+.register_header2{
+	margin-left:50px;
+	font-size:16px;
+	line-height:30px;
+	font-family:Microsoft Yahei;
+	float:left;
+	}
+
+.register_header2 a:link {
+	color:blue;
+    text-decoration:none;
+}
+
+.register_header2 a:visited {
+    color:blue;
+    text-decoration:none;
+}
+    
+.register_header2 a:hover {
+    color:#C00;
+    text-decoration:none;
+    }
+    
+.register_header2 a:active {
+    color:blue;
+    text-decoration:none;
+}
+
+
+#register_username, #register_password, #register_password_check, #register_password1{
+	padding:0;
+	border:0;
+	margin-top:20px;
+	margin-left:10px;
+	text-indent:48px;
+	width:299px;
+	height:32px;
+	font-size:14px;
+	line-height:32px;
+	font-family:Microsoft Yahei;
+	float:left;
+	border-radius:5px;
+	border:#999 1px solid;
+	
+	}
+	
+#register_email, #register_identifying_code{
+	padding:0;
+	border:0;
+	margin-top:20px;
+	margin-left:10px;
+	text-indent:48px;
+	width:220px;
+	height:32px;
+	font-size:14px;
+	line-height:32px;
+	font-family:Microsoft Yahei;
+	border-radius:5px 0px 0px 5px;
+	border-top:#999 1px solid;
+	border-bottom:#999 1px solid;
+	border-left:#999 1px solid;
+	float:left;
+	clear: left;
+	}
+
+#register_username{
+	background-image:url(../img/register/user.png);
+	background-repeat:no-repeat;
+	}
+	
+#register_password{
+	background-image:url(../img/register/lock.png);
+	background-repeat:no-repeat;
+	}
+	
+#register_password_check{
+	background-image:url(../img/register/lockcheck.png);
+	background-repeat:no-repeat;
+	}
+
+#register_email{
+	background-image:url(../img/register/email.png);
+	background-repeat:no-repeat;
+	}
+
+#register_identifying_code{
+	background-image:url(../img/register/identifyingcode.png);
+	background-repeat:no-repeat;
+	}
+
+#register_get_identifying_code, #register_register_button{
+	border:0;
+	margin-top:20px;	
+	padding:0;
+	width:78px;
+	height:34px;
+	font-size:14px;
+	line-height:32px;
+	font-family:Microsoft Yahei;
+	float:left;
+	text-align:center;
+	cursor:pointer;
+	border-radius:0px 5px 5px 0px;
+	color:#fff;
+	background: #4477a1;
+	background: -webkit-gradient(linear, left top, left bottom, from(#81a8cb), to(#4477a1) );  
+	}
+/*去除type=number时右侧的上下小箭头*/	
+input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{
+    -webkit-appearance: none !important;
+    margin: 0; 
+}
+	
+#register_get_identifying_code:hover, #register_register_button:hover{
+	background: #81a8cb;
+    background: -webkit-gradient(linear, left top, left bottom, from(#4477a1), to(#81a8cb) );
+	}
+	
+/*表单验证样式	*/
+#check_register{
+	color:#666;
+	float:left;
+	font-family:Microsoft Yahei;
+	display:none;
+	width:220px;
+	margin-top:22px;
+	font-size:10px;
+	margin-left:5px;
+	}
+
+.rg_def,.rg_err,.rg_cor{
+	padding-left:25px;
+	float:left;
+	background-repeat:no-repeat;
+	background-size:20px;
+	background-position:0px 5px;
+	}
+
+.rg_def{
+	padding-top:2px;
+	height:30px;
+	background-image:url(../img/register/tips.png);
+	}
+	
+.rg_err{
+	padding-top:10px;
+	height:22px;
+	background-image:url(../img/register/wrong.png);
+	}
+
+.rg_cor{
+	padding-top:10px;
+	height:22px;
+	background-image:url(../img/register/correct.png);
+	}
+
+
+
