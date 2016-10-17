@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>修改邮箱</title>
+<link href="css/reset.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="css/userMsg_sub.css">
+</head>
+<body>
+    <div class="container1">
+        <h1>修改邮箱</h1>
+        
+<form action="" method="get">
+        <input type="password" id="register_password1" placeholder="请输入登录密码" />
+        <input type="text" id="register_email" placeholder="请输入新的邮箱" />
+        <p id="check_register"></p>
+        <input type="submit" id="register_register_button" value="确定" />
+       </form>
+    </div>
+<script>
+	window.onload=function(){
+	  var rgInput = document.getElementsByTagName('input');
+	  var rgoldpwd = rgInput[0];//密码
+	  var rgemail = rgInput[1];//新邮箱
+	
+	  var rgP = document.getElementsByTagName('p');
+	  //提示信息
+	  var rgemail_msg = rgP[0];
+	
+	  var rgname_length = 0;
+	  
+	  function getLength(str){
+	  // \x00-xff代表单字节字符。
+		  return str.replace(/[^\x00-\xff]/g, "xx").length;
+		}	
+		rgemail.onblur = function(){
+			rgemail_msg.style.display = "inline";
+			var rg_filter  = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+			if (this.value==""){
+			  rgemail_msg.innerHTML = "<i class=rg_err>邮箱不能为空！</i>";
+			}
+			else if (rg_filter.test(this.value))
+			{
+				 rgemail_msg.innerHTML = '<i class=rg_cor></i>';
+				 }
+			 else {
+				 rgemail_msg.innerHTML = '<i class=rg_err>您输入的邮箱格式不正确！</i>';
+			}
+		}	
+			
+	}
+</script>
+</body>
+</html>

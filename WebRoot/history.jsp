@@ -65,6 +65,7 @@ String rootpath = request.getContextPath();
 			<ul class="tab-bar">
 				<li><a href="<%=rootpath%>/realtime.jsp">实时监控</a></li>
 				<li class="active"><a href="<%=rootpath%>/history.jsp">历史数据</a></li>
+				<li><a href="<%=rootpath%>/send.jsp">数据下载</a></li>
 			</ul>
 			<!-- 日期查询 -->
 			<form action="<%=rootpath%>/servlet/HistoryServlet" class="search">
@@ -78,7 +79,7 @@ String rootpath = request.getContextPath();
 					    <input class="calendar" size="16" type="text" id="enddate" name="enddate">
 					    <div class="node_id_div">节点<input type="text" value="1" id="node_id" name="node_id" readonly=true></div>
 					    <input type="submit" value="查询" >
-					    
+					    <input type="button" id="trend" value="趋势图" >
 					</fieldset>
 				</div>
 			</form>
@@ -223,6 +224,8 @@ String rootpath = request.getContextPath();
 	<script type="text/javascript" src="<%=rootpath%>/js/laydate.dev.js"></script>
 	<script type="text/javascript" src="<%=rootpath%>/js/pageGroup.js"></script>
 	<script type="text/javascript" src="<%=rootpath%>/js/pageCenter.js"></script>
+	<script src="js/jquery-1.9.1.min.js"></script>
+	<script src="js/layer/layer.js"></script>
 	<script type="text/javascript">
 		// 日期选择控件
         laydate({
@@ -245,6 +248,17 @@ String rootpath = request.getContextPath();
 			tablestyle();//表格奇偶行样式区分
 			defaultdate();//设置默认日期
 			AdjustColumnsHeight();//调整sidebar高度
+		});
+		// 历史趋势图
+		$('#trend').on('click', function(){
+		  layer.open({
+		  type: 2,
+		  title: false,
+		  maxmin: false,
+		  shadeClose: true, //点击遮罩关闭层
+		  area : ['1016px' , '430px'],
+		  content: 'trendFig.jsp'
+		  });
 		});
     </script>
 	
