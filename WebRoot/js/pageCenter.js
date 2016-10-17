@@ -47,6 +47,42 @@ function AdjustColumnsHeight() {
     // var maxHeight = Math.max( hsideCol , hmainCol)-40;
     var maxHeight = hmainCol-40;
     sideCol.style.height = maxHeight + 'px';
-    hmainCol.style.height = maxHeight + 'px';
 }
 
+function CheckboxAll(){
+    // console.log("check");
+    var AcheckboxContainer = document.getElementsByClassName('checkboxContainer')[0];
+    var Ainput = new Array(); 
+    Ainput = AcheckboxContainer.getElementsByTagName('input');
+    // console.log(Ainput);
+    if(Ainput[0].checked==true)
+    {
+        for(i=0;i<Ainput.length;i++)
+        {
+            Ainput[i].checked=true;
+        }
+
+    }
+    else
+    {
+        for(i=0;i<Ainput.length;i++)
+        {
+            Ainput[i].checked=false;
+        } 
+    }
+
+}
+
+function CheckboxSub(){
+    var AcheckboxContainer = document.getElementsByClassName('checkboxContainer')[0];
+    var Ainput = new Array(); 
+    Ainput = AcheckboxContainer.getElementsByTagName('input'); 
+    for(i=1;i<Ainput.length;i++)  
+    {
+        if(Ainput[i].checked==false)
+        {
+            Ainput[0].checked=false;
+            break;
+        }
+    } 
+}

@@ -39,6 +39,7 @@ input[type="button"]{
 	background: #26B064;
 	color: #fff;
 	border: #26B064 solid 1px;
+	cursor: pointer;
 }
 input[type="submit"]{
 	height: 2em;
@@ -47,6 +48,7 @@ input[type="submit"]{
 	background: #26B064;
 	color: #fff;
 	border: #26B064 solid 1px;
+	cursor: pointer;
 }
 fieldset{
 	margin-left:30px;
@@ -614,4 +616,71 @@ td span,th span{
 	color: #cc3333;
 	margin: 20px 0 0 10px;
 	font-weight: bold;
+}
+
+/*文件传输页面样式*/
+.sendContainer{
+	border-radius: 10px !important;
+	height: 250px;
+
+}
+
+input[type="checkbox"]{
+	color: #000;
+	vertical-align: middle;
+}
+
+.sendSubmit{
+	padding: 0 10px;
+	margin-left: 30px !important;
+}
+
+.checkboxContainer{
+	margin: 20px 20px 20px 0px;
+	padding:5px;
+	border: 1px solid #ccc;
+	display: inline-block;
+	border-radius: 5px;
+}
+
+.checkboxContainer label{
+	vertical-align: middle;
+	margin-right: 20px;
+}
+
+.node_id_div1{
+	position: absolute;
+	right: 50%;
+	top: 20px;
+	color: #333;
+	font-size: 1.2em;
+}
+.node_id_div1>input{
+	font-size: 16px;
+	background-color: #F5F5F5; 
+}
+
+.sendFieldset{
+	margin-left: 200px !important;
+	margin-top: 50px !important;
+}
+
+/*历史趋势图页面样式*/
+.trendContainer{
+	position: relative;
+	width: 1016px;
+	height: 430px;
+	background-color: #26B064;
+}
+
+.trendBar{
+	position: absolute !important;
+	top: 64px !important;
+	left: 0 !important;
+}
+
+.trendChart{
+	position: absolute !important;
+	top: 64px !important;
+	right: 16px !important;
 }

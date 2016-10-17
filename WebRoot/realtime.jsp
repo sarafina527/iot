@@ -65,6 +65,7 @@ String rootpath = request.getContextPath();
 			<ul class="tab-bar">
 				<li><a href="">实时监控</a></li>
 				<li class="active"><a href="history.jsp">历史数据</a></li>
+				<li class="active"><a href="<%=rootpath%>/send.jsp">数据下载</a></li>
 			</ul>
 			<div class="rt-data">
 				<div class="rt-data-top">
