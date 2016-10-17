@@ -31,12 +31,12 @@ public class rtJsonServlet extends HttpServlet {
 		String type = "temp";
 		if(request.getParameter("type")!=null&&request.getParameter("type")!=""){
 			type = request.getParameter("type");
-			System.out.println(type);
+//			System.out.println(type);
 		}
 		int nodeId = 1;
 		if(request.getParameter("nodeId")!=null&&request.getParameter("nodeId")!=""){
 			nodeId = Integer.parseInt(request.getParameter("nodeId"));
-			System.out.println(nodeId);
+//			System.out.println(nodeId);
 		}
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();

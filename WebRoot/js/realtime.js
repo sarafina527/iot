@@ -45,3 +45,4 @@ function refreshByNodeclick(nodeId){
 		location.search = cursearch+"&node_id="+nodeId;
 	}
 }
+

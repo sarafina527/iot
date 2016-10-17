@@ -35,6 +35,16 @@
     <servlet-name>realtimeJson</servlet-name>
     <servlet-class>com.servlet.realtimeJson</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>MaxMinServlet</servlet-name>
+    <servlet-class>com.servlet.MaxMinServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>HistoryJson</servlet-name>
+    <servlet-class>com.servlet.HistoryJson</servlet-class>
+  </servlet>
+
+
 
 
 
@@ -76,6 +86,14 @@
   <servlet-mapping>
     <servlet-name>realtimeJson</servlet-name>
     <url-pattern>/servlet/realtimeJson</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>MaxMinServlet</servlet-name>
+    <url-pattern>/servlet/MaxMinServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>HistoryJson</servlet-name>
+    <url-pattern>/servlet/HistoryJson</url-pattern>
   </servlet-mapping>
   
   <welcome-file-list>
