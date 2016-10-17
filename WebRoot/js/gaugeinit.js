@@ -15,6 +15,14 @@ function getLinejson(){
         window.linejson = data;
     });
 }
+//获取MaxMin对象
+function getMaxMin(){
+    var requestData = {nodeId:$('.nodelist li.active span').text()};
+    $.get('servlet/MaxMinServlet',requestData,function(data){
+        window.mmjson = JSON.parse(data);//获取当前第一条数据  全局变量存储最新数据
+        console.log(mmjson[$('.typelist li.active span').text()+'_max']);
+    });
+}
 
 //仪表盘5个子图
 function gaugechart() {
@@ -47,10 +55,15 @@ function gaugechart() {
             },
             "events" :{
                 "initialized": function (evt, arg) {
+                    if(rtjson.temp>mmjson.temp_max||rtjson.temp<mmjson.temp_min){
+                        FusionCharts.items["tempID"].setChartAttribute("thmFillColor" , "#ff0000");
+                    }
                     var dataUpdate = setInterval(function () {                        
                         FusionCharts.items["tempID"].feedData("&value="+rtjson.temp);//传数据
-                    }, 5000);//设置更新频率5000ms
-                    
+                        if(rtjson.temp>mmjson.temp_max||rtjson.temp<mmjson.temp_min){
+                            FusionCharts.items["tempID"].setChartAttribute("thmFillColor" , "#ff0000");
+                        }
+                    }, 5000);//设置更新频率5000ms                                      
                 },
                 
             }
@@ -76,13 +89,20 @@ function gaugechart() {
                     "theme" : "fint",
                     "valueFontColor" : "#000000",//字体颜色
                     "showValue":true
+
                 },
                 "value":rtjson.humi
             },
             "events":{
                 "rendered": function(evtObj, argObj){
+                    if(rtjson.humi>mmjson.humi_max||rtjson.humi<mmjson.humi_min){
+                        FusionCharts.items["humiID"].setChartAttribute("cylFillColor" , "#ff0000");
+                    }
                     setInterval(function () {
                         FusionCharts.items["humiID"].feedData("&value="+rtjson.humi);//传数据
+                        if(rtjson.humi>mmjson.humi_max||rtjson.humi<mmjson.humi_min){
+                            FusionCharts.items["humiID"].setChartAttribute("cylFillColor" , "#ff0000");
+                        }
                     }, 5000);
                 }
             }
@@ -111,26 +131,28 @@ function gaugechart() {
                     "showborder": "0",
                     "bgcolor": "#FFFFFF",
                     // "showValue":true
+
+
                 },
                 "colorrange": {
                     "color": [
-                        {
-                            "minvalue": "25000",
-                            "maxvalue": "30000",
+                        {   
+                            "minvalue": mmjson.light_max.toString(),
+                            "maxvalue":"1000000000",
                             "label": "超出上界！",
                             "code": "#ff0000"
                         }, 
                         {
-                            "minvalue": "200",
-                            "maxvalue": "25000",
+                            "minvalue": mmjson.light_min.toString(),
+                            "maxvalue": mmjson.light_max.toString(),
                             "label": "指标正常",
                             "code": "#00ff00"
                         }, 
                         {
-                            "minvalue": "",
-                            "maxvalue": "200",
+                            "maxvalue": mmjson.light_min.toString(),
+                            "minvalue": "-11000",
                             "label": "超出下界",
-                            "code": "#ff9900"
+                            "code": "#ff0000"
                         }
                     ]
                 },
@@ -144,7 +166,7 @@ function gaugechart() {
                         //     FusionCharts.items["light"].feedData("&value="+data);//传数据
                         // });
                         FusionCharts.items["lightID"].feedData("&value="+rtjson.light);//传数据
-                        // console.log(rtjson.count);
+                        // console.log(rtjson.light+" "+mmjson.light_min);
                     }, 5000);
                 }
             }
@@ -164,7 +186,7 @@ function gaugechart() {
                     "numberSuffix": "°C",
                     "decimals" : "2",
                     "showhovereffect": "1",
-                    "thmFillColor": "#e44b23",                
+                    "thmFillColor": "#C0C0C0",                
                     "thmOriginX": "100",
                     "theme" : "fint",
                     "bgcolor":"#ffffff",
@@ -175,9 +197,14 @@ function gaugechart() {
             },
             "events" :{
                 "initialized": function (evt, arg) {
-                    var dataUpdate = setInterval(function () {
-                       
+                    if(rtjson.soiltemp>mmjson.soiltemp_max||rtjson.soiltemp<mmjson.soiltemp_min){
+                        FusionCharts.items["soiltempID"].setChartAttribute("thmFillColor" , "#ff0000");
+                    }
+                    var dataUpdate = setInterval(function () {                       
                         FusionCharts.items["soiltempID"].feedData("&value="+rtjson.soiltemp);//传数据
+                        if(rtjson.soiltemp>mmjson.soiltemp_max||rtjson.soiltemp<mmjson.soiltemp_min){
+                        FusionCharts.items["soiltempID"].setChartAttribute("thmFillColor" , "#ff0000");
+                    }
                        
                     }, 5000);
                 }  
@@ -206,9 +233,15 @@ function gaugechart() {
             },
             "events":{
                 "rendered": function(evtObj, argObj){
+                    if(rtjson.soilhumi>mmjson.soilhumi_max||rtjson.soilhumi<mmjson.soilhumi_min){
+                        FusionCharts.items["soilhumiID"].setChartAttribute("cylFillColor" , "#ff0000");
+                    }
                     setInterval(function () {
-                        
+                        // console.log(FusionCharts.items["soilhumiID"].getChartAttribute( "cylFillColor"));
                         FusionCharts.items["soilhumiID"].feedData("&value="+rtjson.soilhumi);//传数据
+                        if(rtjson.soilhumi>mmjson.soilhumi_max||rtjson.soilhumi<mmjson.soilhumi_min){
+                            FusionCharts.items["soilhumiID"].setChartAttribute("cylFillColor" , "#ff0000");
+                        }
                         $('.status span').text($('.nodelist li.active span').text());
                     }, 5000);
                 }
@@ -252,6 +285,32 @@ function linechart() {
                     "showAlternateHGridColor" : "0",                    
                 },
                 "data":linejson,
+                "trendlines": [
+                {
+                    "line": [
+                        {
+                            "startvalue": mmjson[$('.typelist li.active span').text()+'_max'],
+                            "endvalue": "",
+                            "istrendzone": "",
+                            "valueonright": "1",
+                            "color": "fda813",
+                            "displayvalue": "max",
+                            "showontop": "1",
+                            "thickness": "2"
+                        },
+                        {
+                            "startvalue": mmjson[$('.typelist li.active span').text()+'_min'],
+                            "endvalue": "",
+                            "istrendzone": "",
+                            "valueonright": "1",
+                            "color": "f77027",
+                            "displayvalue": "警戒值",
+                            "showontop": "1",
+                            "thickness": "2"
+                        }
+                    ]
+                }
+            ]
             },
             "events":{
                 "rendered": function(evtObj, argObj){
@@ -263,9 +322,10 @@ function linechart() {
                         var nativeJSONObj = FusionCharts("lineID").getJSONData(); 
                         var nativeJsonStr = JSON.stringify(nativeJSONObj);
                         var tail = nativeJsonStr.indexOf("data")-1;
-                        var nativechart = nativeJsonStr.slice(0,tail);
+                        var nativecharthead = nativeJsonStr.slice(0,tail);
+                        var nativecharttail = nativeJsonStr.slice(nativeJsonStr.indexOf("trendlines"));
                         // var jsondata =  '{ "chart":{}, "data":'+linejson+' } ';  
-                        var jsondata = nativechart+'"data":'+linejson+'}';
+                        var jsondata = nativecharthead+'"data":'+linejson+',"'+nativecharttail;
                         chartRef.setJSONData(jsondata,"json");//传数据
                         // console.log(jsondata);
                     }, 5000);
