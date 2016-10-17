@@ -29,30 +29,26 @@ String rootpath = request.getContextPath();
 	<script type="text/javascript" src="<%=rootpath%>/js/jquery-3.1.0.js"></script>
 	<script type="text/javascript" src="<%=rootpath%>/js/common.js"></script>
     <script type="text/javascript" src="<%=rootpath%>/js/realtime.js"></script>
+    <script type="text/javascript" src="<%=rootpath%>/js/hisclick.js"></script>
     <script type="text/javascript" src="<%=rootpath%>/js/fusioncharts.js"></script>
-    <script type="text/javascript" src="<%=rootpath%>/js/gaugeinit.js"></script>
+    <script type="text/javascript" src="<%=rootpath%>/js/hisfigure.js"></script>
     <script type="text/javascript" src="<%=rootpath%>/js/pageCenter.js"></script>
-    <script src="js/jquery-1.9.1.min.js"></script>
-    <script src="js/layer/layer.js"></script>
+    <script src="<%=rootpath%>/js/jquery-1.9.1.min.js"></script>
+    <script src="<%=rootpath%>/js/layer/layer.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$('.nodelist li').bind('click',clickNode);//bind the click event 
 			$('.typelist li').bind('click',clickType);
 			updatePara();//update the active node and type
 			$('.typelist li').click(linechart);
-			// getGaugejson();
-			// setInterval(getGaugejson,5000);
-			// getLinejson();
-			// setInterval(getLinejson,5000);
-		 	FusionCharts.ready(gaugechart);
-		    FusionCharts.ready(linechart);
-		    
+			getMaxMin();
+		    FusionCharts.ready(linechart);   	    
 			
 		});
- 		var stDate=parent.$("#stdate").val();//获取父页面查询起始时间
- 		var endDate=parent.$("#enddate").val();//获取父页面查询截止时间 		
- 		var nodeId=parent.$("#node_id").val();//获取节点 
- 		console.log(stDate+" "+endDate+" "+nodeId);
+ 		// var stDate=parent.$("#stdate").val();//获取父页面查询起始时间
+ 		// var endDate=parent.$("#enddate").val();//获取父页面查询截止时间 		
+ 		// var nodeId=parent.$("#node_id").val();//获取节点 
+ 		// var type = $('.typelist li.active span').text();
+ 		// console.log(stDate+" "+endDate+" "+nodeId+" "+type);
 	</script>
 	
 </body>
