@@ -28,8 +28,8 @@ $(function(){
 
 	// }
 	
-	//点击分页按钮触发
-	$("#pageGro li").live("click",function(){
+	//点击分页按钮触发live
+	$("#pageGro li").bind("click",function(){
 		if(pageCount > 5){
 			var pageNum = parseInt($(this).html());//获取当前页数
 			goToPage(pageNum);

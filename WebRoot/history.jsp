@@ -224,8 +224,8 @@ String rootpath = request.getContextPath();
 	<script type="text/javascript" src="<%=rootpath%>/js/laydate.dev.js"></script>
 	<script type="text/javascript" src="<%=rootpath%>/js/pageGroup.js"></script>
 	<script type="text/javascript" src="<%=rootpath%>/js/pageCenter.js"></script>
-	<script src="js/jquery-1.9.1.min.js"></script>
-	<script src="js/layer/layer.js"></script>
+	<script src="<%=rootpath%>/js/jquery-1.9.1.min.js"></script>
+	<script src="<%=rootpath%>/js/layer/layer.js"></script>
 	<script type="text/javascript">
 		// 日期选择控件
         laydate({
@@ -252,13 +252,15 @@ String rootpath = request.getContextPath();
 		});
 		// 历史趋势图
 		$('#trend').on('click', function(){
+		var curl = location.href;
+    	var head = curl.slice(0,curl.indexOf('iot'))+'iot/';
 		  layer.open({
 		  type: 2,
 		  title: false,
 		  maxmin: false,
 		  shadeClose: true, //点击遮罩关闭层
 		  area : ['1016px' , '430px'],
-		  content: 'trendFig.jsp'
+		  content: head+'trendFig.jsp'
 		  });
 		});
     </script>
