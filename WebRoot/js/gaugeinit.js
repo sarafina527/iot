@@ -162,7 +162,7 @@ function gaugechart() {
                         //     FusionCharts.items["light"].feedData("&value="+data);//传数据
                         // });
                         FusionCharts.items["lightID"].feedData("&value="+rtjson.light);//传数据
-                        console.log(rtjson.light+" "+mmjson.light_min);
+                        // console.log(rtjson.light+" "+mmjson.light_min);
                     }, 5000);
                 }
             }
