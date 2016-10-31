@@ -25,6 +25,27 @@ function getMaxMin(){
 }
 
 //仪表盘5个子图
+var picWidth; //子图宽度
+var picHeight; //子图高度
+if(document.body.clientWidth>600){
+    picWidth = 200;
+    picHeight = 250;
+    }
+// else if(document.body.clientWidth>370)
+//     {
+//      picWidth = 180;
+//      picHeight = 225;
+//     }
+// else
+//     {
+//         picWidth = 160;
+//         picHeight = 200;
+//     }
+else{
+    picWidth = document.body.clientWidth/2 - 10;
+    picHeight = 1.25 * picWidth;
+}
+
 function gaugechart() {
     var requestData = {nodeId:$('.nodelist li.active span').text()};
     $.get('servlet/realtimeJson',requestData,function(data){
@@ -34,8 +55,8 @@ function gaugechart() {
             type: 'thermometer',
             renderAt: 'chart-container1',
             id  : 'tempID',
-            width: '200',
-            height: '250',
+            width:  picWidth,
+            height: picHeight,
             dataFormat: 'json',
             dataSource: {
                 "chart": {
@@ -73,8 +94,8 @@ function gaugechart() {
             dataFormat: 'json',
             id: 'humiID',
             renderAt: 'chart-container2',
-            width: '200',
-            height: '250',
+            width:  picWidth,
+            height: picHeight,
             dataSource: {
                 "chart": {
                     "caption": "湿度监测",
@@ -111,8 +132,8 @@ function gaugechart() {
             type: 'bulb',
             renderAt: 'chart-container3',
             id: 'lightID',
-            width: '200',
-            height: '250',
+            width:  picWidth,
+            height: picHeight,
             dataFormat: 'json',
             dataSource: {
                 "chart": {
@@ -175,8 +196,8 @@ function gaugechart() {
             type: 'thermometer',
             renderAt: 'chart-container4',
             id  : 'soiltempID',
-            width: '200',
-            height: '250',
+            width:  picWidth,
+            height: picHeight,
             dataFormat: 'json',
             dataSource: {
                 "chart": {
@@ -215,8 +236,8 @@ function gaugechart() {
             dataFormat: 'json',
             id: 'soilhumiID',
             renderAt: 'chart-container5',
-            width: '200',
-            height: '250',
+            width:  picWidth,
+            height: picHeight,
             dataSource: {
                 "chart": {
                     "caption": "土壤湿度监测",
@@ -257,6 +278,14 @@ function gaugechart() {
 }
 
 function linechart() {
+    var chartWidth ;
+    if(document.body.clientWidth>800)
+        chartWidth = 800;
+    // else if(document.body.clientWidth>600)
+    //     chartWidth = 600;
+    else
+        chartWidth = document.body.clientWidth;
+    console.log(chartWidth);
     var requestData = {nodeId:$('.nodelist li.active span').text(),type:$('.typelist li.active span').text()};
     $.get('servlet/rtJsonServlet',requestData,function(data){
         linejson = JSON.parse(data);//传数据
@@ -264,7 +293,8 @@ function linechart() {
             id: 'lineID',
             type: 'line',
             renderAt: 'linechart',
-            width: '800',
+           
+            width: chartWidth,
             height: '300',
             dataFormat: 'json',
             dataSource: {

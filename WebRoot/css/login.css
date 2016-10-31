@@ -1,8 +1,9 @@
-*{	margin: 0;
-	padding: 0;}
-html{ 
+/**{	margin: 0;
+	padding: 0;}*/
+/*html{ 
 	width: 100%;
 	height:100%;
+	min-height: 600px;
 	min-width: 1300px;
 	max-height: 1280px;
 	max-width: 1920px;
@@ -12,18 +13,22 @@ body{width: 100%;
 	margin:0;
 	padding:0;
 	height:100%;
-	min-width: 1300px;
+	min-height: 600px;
 	max-width: 1920px;
 	max-height: 1280px;
-	}
-	
+	}*/
+html,body{
+	width: 100%;
+	min-height: 100%;
+}
+body{
+	background-image:url(../img/register/lgbgimg.jpg);
+	background-size:100%;
+	background-repeat: no-repeat;
+}
 .login_containter{
 	width:100%;
 	height:100%;
-	background-image:url(../img/register/lgbgimg.jpg);
-	background-size:100%;
-	min-width:1000px;
-	background-repeat: no-repeat;
 	}
 .Hailogo{
 	width:7em;
@@ -33,54 +38,30 @@ body{width: 100%;
 	}
 	
 .webname{
-/*	width:560px;
-	height:80px;
-	background-color:#FFF;
-	border-radius:10px;*/
-	width:560px;
 	display:block; 
 	text-align: left; 
-	padding: 14px; 
-	font-family: STXingkai; 
-	font-size: 44px;
-	line-height:80px; 
+	padding: 1em; 
+	font: 3em/100% STXingkai;
 	color: rgba(10,10,10, 0.8);
-	text-shadow: 1px 1px 2px #009944, 0 0 0 #000;
-	
+	text-shadow: 1px 1px 2px #009944, 0 0 0 #000;	
 	position:absolute;
 	top:10px;
 	left:170px;
 	white-space:nowarp;
-/*	background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(rgba(0, 128, 0, 1)), to(rgba(51, 51, 51, 1)));
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	-webkit-text-stroke: 0.01em rgba(0, 128, 0, 1);*/
 	}
 		
 .login_mainbody{
 	width:400px;
 	border-radius:10px;
-	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(255, 255, 255, 0.7)), color-stop(1, rgba(255, 255, 255, 0.7)));
-	background-image: -ms-linear-gradient(top,rgba(255, 255, 255, 0.7),rgba(255, 255, 255, 0.7));
-    background-image: -moz-linear-gradient(top,rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7));
-    background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7));
-    background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7));
-    background-image: linear-gradient(top, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7));
 	font-family:Microsoft Yahei;
 	position:absolute;
 	right:200px;
 	top:350px;
-/*	margin-left:100px;*/
 	margin-top:-120px;
 	padding-bottom:40px;
+	background: rgba(255,255,255,.7);
 	
 	}
-@media screen and (min-height: 1000px) { 
-.login_mainbody {top: 450px;} 
-} 
-@media screen and (min-width: 1400px) { 
-.login_mainbody {right: 350px;;} 
-} 
 
 /*浏览器尺寸不小于1000px时距离顶部450px*/
 
@@ -115,7 +96,7 @@ body{width: 100%;
 	float:left;
 	/*clear:left;*/
 	width:260px;
-	height:32px;
+	height:30px;
 	border-top-right-radius:5px;
 	border-bottom-right-radius:5px;
 /*	border-top:#999 1px solid;
@@ -200,4 +181,70 @@ input:-webkit-autofill {
 	color: #f00;
 	font-size: 14px;
 
+}
+@media screen and (min-height: 1000px) { 
+.login_mainbody {top: 450px;} 
+} 
+@media screen and (min-width: 1400px) { 
+.login_mainbody {right: 350px;} 
+} 
+@media screen and (max-width: 800px){
+.login_containter {
+	width:100%;
+/*	background-image: none;
+	background-color: #99CC66;
+	background-image:
+	repeating-linear-gradient(120deg, rgba(255,255,255,.1), rgba(255,255,255,.1) 1px, transparent 1px, transparent 60px),
+	repeating-linear-gradient(60deg, rgba(255,255,255,.1), rgba(255,255,255,.1) 1px, transparent 1px, transparent 60px),
+	linear-gradient(60deg, rgba(0,0,0,.1) 25%, transparent 25%, transparent 75%, rgba(0,0,0,.1) 75%, rgba(0,0,0,.1)),
+	linear-gradient(120deg, rgba(0,0,0,.1) 25%, transparent 25%, transparent 75%, rgba(0,0,0,.1) 75%, rgba(0,0,0,.1));
+	background-size: 70px 120px;
+	background-repeat: repeat;*/
+}
+.login_mainbody {
+	width: 350px;
+	top: 250px;
+	right: 50%;
+	margin-right: -175px;
+	background: none;
+}
+.login_mainbody h1{
+	/*text-align: center;*/
+	margin-left: calc(50% - 1em) ;
+}
+.login_mainbody img{
+	margin-left: 20px;
+}
+.login_mainbody input[type="submit"]{
+	margin-left: 20px;
+}
+.login_mainbody a{
+	margin-left: 72px;
+}
+.webname{
+	font-size: 20px;
+	line-height: 30px;
+	left: 3em;
+}
+.Hailogo{
+	width: 3em;
+	top: 1em;
+	left: 1em;
+}
+html,body{
+	min-width: 300px;
+	/*min-height: 100%;*/
+	max-height: 1920px;
+}
+body{
+	background-image: none;
+	background-color: #99CC66;
+	background-image:
+	repeating-linear-gradient(120deg, rgba(255,255,255,.1), rgba(255,255,255,.1) 1px, transparent 1px, transparent 60px),
+	repeating-linear-gradient(60deg, rgba(255,255,255,.1), rgba(255,255,255,.1) 1px, transparent 1px, transparent 60px),
+	linear-gradient(60deg, rgba(0,0,0,.1) 25%, transparent 25%, transparent 75%, rgba(0,0,0,.1) 75%, rgba(0,0,0,.1)),
+	linear-gradient(120deg, rgba(0,0,0,.1) 25%, transparent 25%, transparent 75%, rgba(0,0,0,.1) 75%, rgba(0,0,0,.1));
+	background-size: 70px 120px;
+	background-repeat: repeat;
+}
 }

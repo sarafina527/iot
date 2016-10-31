@@ -10,6 +10,7 @@ String rootpath = request.getContextPath();
 	<title>实时监控</title>
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/layout.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<jsp:include page="favicon.jsp"></jsp:include>
 </head>
 <body>
@@ -20,8 +21,9 @@ String rootpath = request.getContextPath();
 		<div class="logo"><a href="#">智能检测系统</a></div>
 		<div class="nav">
 			<ul>
-				<li><a href="realtime.jsp">监控中心</a></li>
+				<li class="topMenuActive"><a href="realtime.jsp">监控中心</a></li>
 				<li><a href="<%=rootpath%>/history.jsp">历史数据</a></li>
+				<li><a href="<%=rootpath%>/send.jsp">数据下载</a></li>
 				<li><a href="nodeManage.jsp">节点管理</a></li>
 				<!-- <li><a href="#">开发者中心</a></li> -->
 				<!-- <li><a href="#">运行记录</a></li> -->
@@ -32,7 +34,7 @@ String rootpath = request.getContextPath();
 					    response.sendRedirect(rootpath+"/login.jsp");
 					    return;
 					}else{
-						%><li class="user"><a href="usermsg.jsp"><%=u.getUsername()%></a></li>
+						%><!-- <li class="user"><a href="usermsg.jsp"><%=u.getUsername()%></a></li> -->
 						<%
 					}
 				%>
@@ -64,9 +66,10 @@ String rootpath = request.getContextPath();
 		<!-- content body -->
 		<div class="content">
 			<ul class="tab-bar">
-				<li><a href="">实时监控</a></li>
+				<li><a href="<%=rootpath%>/realtime.jsp">实时监控</a></li>
 				<li class="active"><a href="history.jsp">历史数据</a></li>
 				<li class="active"><a href="<%=rootpath%>/send.jsp">数据下载</a></li>
+				<li class="active mobileTopMenu"><a href="<%=rootpath%>/nodeManage.jsp">节点管理</a></li>
 			</ul>
 			<div class="rt-data">
 				<div class="rt-data-top">
@@ -84,23 +87,20 @@ String rootpath = request.getContextPath();
 					<div class="clear"></div>
 				</div>
 				<div class="rt-data-main">
-					<div id="chart-container1"></div>
-					<div id="chart-container2"></div>
-					<div id="chart-container3"></div>
-					<div id="chart-container4"></div>
-					<div id="chart-container5"></div>
+					<div id="chart-container1"></div><div id="chart-container2"></div><div id="chart-container3"></div><div id="chart-container4"></div><div id="chart-container5"></div>
+					<div class="mobileTitle">趋势图</div>
+					<ul class="selecttype typelist">
+						<li class="active">温度(°C)<span>temp</span></li>
+						<li>湿度(g/m3)<span>humi</span></li>
+						<li>光照(Lx)<span>light</span></li>
+						<li>土壤温度(°C)<span>soiltemp</span></li>
+						<li>土壤湿度(g/m3)<span>soilhumi</span></li>
+					</ul>
+					<div class="figure" id="linechart">	
+					</div>
 				</div>
 
-				<ul class="selecttype typelist">
-					<li class="active">温度(°C)<span>temp</span></li>
-					<li>湿度(g/m3)<span>humi</span></li>
-					<li>光照(Lx)<span>light</span></li>
-					<li>土壤温度(°C)<span>soiltemp</span></li>
-					<li>土壤湿度(g/m3)<span>soilhumi</span></li>
-				</ul>
-				<div class="figure" id="linechart">
-					
-				</div>
+
 			</div>
 
 
@@ -140,9 +140,9 @@ String rootpath = request.getContextPath();
 		 	FusionCharts.ready(gaugechart);
 		    FusionCharts.ready(linechart);
 		    AdjustColumnsHeight();//调整sidebar高度
-			
+			webName();//修改网站名
 		});
- 		
+
 	</script>
 	
 </body>

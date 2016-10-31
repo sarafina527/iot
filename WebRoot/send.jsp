@@ -8,7 +8,12 @@ String rootpath = request.getContextPath();
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+<<<<<<< HEAD
 	<title>数据下载</title>
+=======
+	<title>历史记录</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+>>>>>>> origin/wpf
 	<link rel="stylesheet" type="text/css" href="<%=rootpath%>/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="<%=rootpath%>/css/layout.css">
 	<link rel="stylesheet" type="text/css" href="<%=rootpath%>/css/pageGroup.css"/>
@@ -24,6 +29,7 @@ String rootpath = request.getContextPath();
 			<ul>
 				<li><a href="<%=rootpath%>/realtime.jsp">监控中心</a></li>
 				<li><a href="<%=rootpath%>/history.jsp">历史数据</a></li>
+				<li class="topMenuActive"><a href="<%=rootpath%>/send.jsp">数据下载</a></li>
 				<li><a href="<%=rootpath%>/nodeManage.jsp">节点管理</a></li>
 				<!-- <li><a href="#">开发者中心</a></li> -->
 				<!-- <li><a href="#">运行记录</a></li> -->
@@ -34,7 +40,7 @@ String rootpath = request.getContextPath();
 					    response.sendRedirect(rootpath+"/login.jsp");
 					    return;
 					}else{
-						%><li class="user"><a href="#"><%=u.getUsername()%></a></li>
+						%><!-- <li class="user"><a href="#"><%=u.getUsername()%></a></li> -->
 						<%
 					}
 				%>
@@ -66,9 +72,14 @@ String rootpath = request.getContextPath();
 				<li><a href="<%=rootpath%>/realtime.jsp">实时监控</a></li>
 				<li><a href="<%=rootpath%>/history.jsp">历史数据</a></li>
 				<li class="active"><a href="<%=rootpath%>/send.jsp">数据下载</a></li>
+				<li class="mobileTopMenu"><a href="<%=rootpath%>/nodeManage.jsp">节点管理</a></li>
 			</ul>
 			<!-- 日期查询 -->
+<<<<<<< HEAD
 			<form action="<%=rootpath%>/servlet/FileDownload" class="search sendContainer">
+=======
+			<form class="search sendContainer" name="download">
+>>>>>>> origin/wpf
 				
 				<div class="">
 					<fieldset class="sendFieldset">
@@ -78,9 +89,15 @@ String rootpath = request.getContextPath();
 						<span>截至日期：</span>			
 					    <input class="calendar" size="16" type="text" id="enddate" name="enddate">
 					    <div class="node_id_div1">节点<input type="text" value="1" id="node_id" name="node_id" readonly=true></div>
+<<<<<<< HEAD
 					    <input class="sendSubmit" type="submit" value="下载" >
 					    <div class="checkboxContainer"> 						    
 						    <input type="checkbox" name="all" id="all" value="all" checked="checked" onclick="CheckboxAll()">
+=======
+					    <!-- <input class="sendSubmit" type="submit" value="下载" > -->
+					    <!-- <div class="checkboxContainer"> 						    
+						    <input type="checkbox" name="all" id="all" value="全选" checked="checked" onclick="CheckboxAll()">
+>>>>>>> origin/wpf
 						    <label for="all">全选</label>					    
 						    <input type="checkbox" name="light" id="light" value="light" checked="checked" onclick="CheckboxSub()">
 						    <label for="light">环境光照</label>					    
@@ -92,8 +109,22 @@ String rootpath = request.getContextPath();
 						    <label for="soiltemp">土壤温度</label>						    
 						    <input type="checkbox" name="soilhumi" id="soilhumi" value="soilhumi" checked="checked" onclick="CheckboxSub()">
 						    <label for="soilhumi">土壤湿度</label>
+					    </div> -->
+					    <div class="aButton">
+					    	<!-- <a href="">环境光照</a>
+					    	<a href="">环境温度</a>
+					    	<a href="">环境湿度</a>
+					    	<a href="">土壤温度</a>
+					    	<a href="">土壤湿度</a> -->
+					    	<input type="button" class="sendButton" name="light" id="light" value="环境光照" onclick="lightAction()">
+					    	<input type="button" class="sendButton" name="temp" id="temp" value="环境温度" onclick="tempAction()">
+					    	<input type="button" class="sendButton" name="humi" id="humi" value="环境湿度" onclick="humiAction()">
+					    	<input type="button" class="sendButton" name="soiltemp" id="soiltemp" value="土壤温度" onclick="soiltempAction()">
+					    	<input type="button" class="sendButton" name="soilhumi" id="soilhumi" value="土壤湿度" onclick="soilhumiAction()">
 					    </div>	
-					    <p class="attention">*您可自主选择需要下载的历史数据时间段，并可按需选择传感器数据。</p>			    
+					    <p class="attention"><!-- *您可自主选择需要下载的历史数据时间段，并可按需选择传感器数据。 -->
+					    *点击按钮下载对应传感器的数据文件！
+					    </p>			    
 					</fieldset>
 				</div>
 			</form>
@@ -137,7 +168,29 @@ String rootpath = request.getContextPath();
 			defaultdate();//设置默认日期
 			AdjustColumnsHeight();//调整sidebar高度
 			// AdjustColumnsHeight();
+			webName();//修改网站名
 		});
+		function lightAction(){
+		    document.download.action="your add method url";
+		    document.download.submit();
+		}
+		function tempAction(){
+		    document.download.action="your add method url";
+		    document.download.submit();
+		}
+		function humiAction(){
+		    document.download.action="your add method url";
+		    document.download.submit();
+		}
+		function soiltempAction(){
+		    document.download.action="your add method url";
+		    document.download.submit();
+		}
+		function soilhumiAction(){
+		    document.download.action="your add method url";
+		    document.download.submit();
+		}
+
     </script>
 	
 	
