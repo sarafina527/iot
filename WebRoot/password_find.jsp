@@ -13,7 +13,7 @@
 	<div class="password_find_containter">
     	<div class="topbg">
             <img src="img/HaiCloudlogo.png" class="Hailogo" />
-            <h1 class="webname">智能监测系统</h1>
+            <h1 class="webname">HaiCloud物联云用户终端系统</h1>
         </div>
         <div class="pf_mainbody">
             <div class="pf_sub">

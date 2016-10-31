@@ -33,6 +33,7 @@ String rootpath = request.getContextPath();
     <script type="text/javascript" src="<%=rootpath%>/js/fusioncharts.js"></script>
     <script type="text/javascript" src="<%=rootpath%>/js/hisfigure.js"></script>
     <script type="text/javascript" src="<%=rootpath%>/js/pageCenter.js"></script>
+    <script type="text/javascript" src="<%=rootpath%>/js/gaugeinit.js"></script>
     <script src="<%=rootpath%>/js/jquery-1.9.1.min.js"></script>
     <script src="<%=rootpath%>/js/layer/layer.js"></script>
 	<script type="text/javascript">

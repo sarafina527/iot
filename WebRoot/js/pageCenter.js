@@ -1,3 +1,17 @@
+// 修改网站名
+function webName(){
+    var ologo = document.getElementsByClassName("logo");
+    var oname = ologo[0].getElementsByTagName('a');
+   
+    if(document.body.clientWidth >= 600)
+    {
+        oname[0].innerHTML = "农业物联云平台——HaiCloud物联云用户终端系统";
+    }
+    else
+    {
+        oname[0].innerHTML = "农业物联云平台——<br>HaiCloud物联云用户终端系统";
+    }
+}
 function box(){
     //获取DIV为‘box’的盒子
     var oBox = document.getElementById('centerContainer');
@@ -46,7 +60,25 @@ function AdjustColumnsHeight() {
  
     // var maxHeight = Math.max( hsideCol , hmainCol)-40;
     var maxHeight = hmainCol-40;
-    sideCol.style.height = maxHeight + 'px';
+    // console.log(document.body.clientWidth);
+    if(document.body.clientWidth >= 800)
+        sideCol.style.height = maxHeight + 'px';
+    // else
+    //     {sideCol.style.height =  55+ 'px';}
+    // console.log(sideCol.style.height);
+    // else if(document.body.clientWidth < 800)
+    else
+    {
+        // var header = document.getElementsByClassName('header')[0];
+        var logo = document.getElementsByClassName('logo')[0];
+        // header.style.marginLeft = (document.body.clientWidth/2 - 150)+"px";
+        logo.style.marginLeft = (document.body.clientWidth/2 - 170)+"px";
+        // logo.style.marginLeft = 0+"px";
+        // console.log(document.body.clientWidth/2);
+        // console.log(logo.style.marginLeft);
+        // console.log(logo.style.marginLeft);
+
+    }
 }
 
 function CheckboxAll(){
@@ -86,3 +118,8 @@ function CheckboxSub(){
         }
     } 
 }
+window.onresize=function(){ 
+    // if(document.body.clientWidth<=800 || document.body.clientWidth)
+        location=location;
+        // console.log(111);
+};

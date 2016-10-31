@@ -13,7 +13,7 @@
 <form class="register_containter"  action=" " method="get" autocomplete="off" >
     <fieldset>
     	<img src="img/HaiCloudlogo.png" class="Hailogo" />
-        <legend class="webname">田间云终端信息监测系统</legend>
+        <legend class="webname">HaiCloud物联云用户终端系统</legend>
         <div class="register_mainbody"><!--主体注册框-->
         	<div class="register_header1">注册新用户</div>
             <div class="register_header2">已有账号？去<a href="login.jsp">登录</a>></div>

@@ -15,11 +15,13 @@ function initNode(){
 	$('.nodelist li').removeClass('active');
 	if(nodeId){
 		$('.nodelist li span:contains("'+nodeId+'")').parent().addClass('active');
+		$('#node_id').val(nodeId);
 	}else{
 		$('.nodelist').children().eq(0).addClass('active');
 	}
 	
 }
+
 // 解析URL参数，返回
 function urlArgs() {
     var args = {};

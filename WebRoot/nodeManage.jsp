@@ -8,6 +8,7 @@ String rootpath = request.getContextPath();
 <head>
 	<meta charset="UTF-8">
 	<title>节点管理</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/layout.css">
     <link rel="stylesheet" type="text/css" href="css/nodeManage.css">
@@ -22,7 +23,8 @@ String rootpath = request.getContextPath();
 					<ul>
 						<li><a href="<%=rootpath%>/realtime.jsp">监控中心</a></li>
 						<li><a href="<%=rootpath%>/history.jsp">历史数据</a></li>
-						<li><a href="<%=rootpath%>/nodeManage.jsp">节点管理</a></li>
+						<li><a href="<%=rootpath%>/send.jsp">数据下载</a></li>
+						<li class="topMenuActive"><a href="<%=rootpath%>/nodeManage.jsp">节点管理</a></li>
 						<!-- <li><a href="#">开发者中心</a></li> -->
 						<!-- <li><a href="#">运行记录</a></li> -->
 						<%
@@ -32,7 +34,7 @@ String rootpath = request.getContextPath();
 							    response.sendRedirect(rootpath+"/login.jsp");
 							    return;
 							}else{
-								%><li class="user"><a href="#"><%=u.getUsername()%></a></li>
+								%><!-- <li class="user"><a href="#"><%=u.getUsername()%></a></li> -->
 								<%
 							}
 							int node_id = 1;
@@ -61,16 +63,22 @@ String rootpath = request.getContextPath();
         	%>
 			</ul>		
 		</div>
+		<div class="content">
+		<ul class="tab-bar">
+			<li><a href="<%=rootpath%>/realtime.jsp">实时监控</a></li>
+			<li><a href="history.jsp">历史数据</a></li>
+			<li><a href="<%=rootpath%>/send.jsp">数据下载</a></li>
+			<li class="active mobileTopMenu"><a href="<%=rootpath%>/nodeManage.jsp">节点管理</a></li>
+		</ul>
 		<div class="nodeManageContent">
-            <!-- <div class="node_id_div nodeName">节点<input type="text" value="1" id="node_id" name="node_id" readonly=true></div> -->
-           
             <div>
+            	<div class="nodeManageNodeId">节点<input type="text" value="1" id="node_id" name="node_id" readonly=true></div>
             	<table class="nodeTable">
                 	<thead>
                     	<tr>
 							<th>传感器类</th>
 							<th>最高警戒值</th>
-							<th>最警戒值</th>
+							<th>最低警戒值</th>
 							<th>节点位置</th>
 						</tr>
                     </thead>
@@ -114,6 +122,7 @@ String rootpath = request.getContextPath();
 			
 			
 		</div>
+		</div>
 	</div>
 	</div>
 </div>
@@ -123,10 +132,16 @@ String rootpath = request.getContextPath();
     <script type="text/javascript" src="<%=rootpath%>/js/jquery-3.1.0.js"></script>
     <script type="text/javascript" src="<%=rootpath%>/js/nodeManage.js"></script>
     <script type="text/javascript" src="<%=rootpath%>/js/pageCenter.js"></script>
+    <!-- <script type="text/javascript" src="<%=rootpath%>/js/hisclick.js"></script> -->
 	<script type="text/javascript">
         $(document).ready(function(){
+        	// updatePara1()；
             $('.nodelist li').bind('click',clickNode);
             initNode();
+            webName();//修改网站名
+            // updatePara1();
+            // AdjustColumnsHeight();//调整sidebar高度
+            // updatePara()；
 		
         });
     </script>

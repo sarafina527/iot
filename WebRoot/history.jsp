@@ -9,6 +9,7 @@ String rootpath = request.getContextPath();
 <head>
 	<meta charset="UTF-8">
 	<title>历史记录</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<link rel="stylesheet" type="text/css" href="<%=rootpath%>/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="<%=rootpath%>/css/layout.css">
 	<link rel="stylesheet" type="text/css" href="<%=rootpath%>/css/pageGroup.css"/>
@@ -23,7 +24,8 @@ String rootpath = request.getContextPath();
 		<div class="nav">
 			<ul>
 				<li><a href="<%=rootpath%>/realtime.jsp">监控中心</a></li>
-				<li><a href="<%=rootpath%>/history.jsp">历史数据</a></li>
+				<li class="topMenuActive"><a href="<%=rootpath%>/history.jsp">历史数据</a></li>
+				<li><a href="<%=rootpath%>/send.jsp">数据下载</a></li>
 				<li><a href="<%=rootpath%>/nodeManage.jsp">节点管理</a></li>
 				<!-- <li><a href="#">开发者中心</a></li> -->
 				<!-- <li><a href="#">运行记录</a></li> -->
@@ -34,7 +36,7 @@ String rootpath = request.getContextPath();
 					    response.sendRedirect(rootpath+"/login.jsp");
 					    return;
 					}else{
-						%><li class="user"><a href="#"><%=u.getUsername()%></a></li>
+						%><!-- <li class="user"><a href="#"><%=u.getUsername()%></a></li> -->
 						<%
 					}
 				%>
@@ -66,17 +68,18 @@ String rootpath = request.getContextPath();
 				<li><a href="<%=rootpath%>/realtime.jsp">实时监控</a></li>
 				<li class="active"><a href="<%=rootpath%>/history.jsp">历史数据</a></li>
 				<li><a href="<%=rootpath%>/send.jsp">数据下载</a></li>
+				<li class="mobileTopMenu"><a href="<%=rootpath%>/nodeManage.jsp">节点管理</a></li>
 			</ul>
 			<!-- 日期查询 -->
 			<form action="<%=rootpath%>/servlet/HistoryServlet" class="search">
 				
 				<div class="">
 					<fieldset>
-						<span>起始日期：</span>			
-					    <input class="calendar" size="16" type="text" id="stdate" name="stdate">
-					    <span class="calendar-icon"></span>
-						<span>截至日期：</span>			
-					    <input class="calendar" size="16" type="text" id="enddate" name="enddate">
+						<span>起始日期：<input class="calendar" size="16" type="text" id="stdate" name="stdate"></span>			
+					    
+					    <!-- <span class="calendar-icon"></span> -->
+						<span>截至日期：<input class="calendar" size="16" type="text" id="enddate" name="enddate"></span>			
+					    
 					    <div class="node_id_div">节点<input type="text" value="1" id="node_id" name="node_id" readonly=true></div>
 					    <input type="submit" value="查询" >
 					    <input type="button" id="trend" value="趋势图" >
@@ -249,17 +252,27 @@ String rootpath = request.getContextPath();
 			defaultdate();//设置默认日期
 			AdjustColumnsHeight();//调整sidebar高度
 			getMaxMin();
+			webName();//修改网站名
 		});
 		// 历史趋势图
 		$('#trend').on('click', function(){
+		  var openWith;
+		  var openHeight;
+		  if(document.body.clientWidth > 800)
+		  {	openWith = 1016+"px";
+			openHeight = 430+"px";}
+		  else{	
+		  	openWith = document.body.clientWidth+"px";
+			openHeight = 530+"px";}
 		var curl = location.href;
     	var head = curl.slice(0,curl.indexOf('iot'))+'iot/';
 		  layer.open({
+
 		  type: 2,
 		  title: false,
 		  maxmin: false,
 		  shadeClose: true, //点击遮罩关闭层
-		  area : ['1016px' , '430px'],
+		  area : [openWith , openHeight],
 		  content: head+'trendFig.jsp'
 		  });
 		});
