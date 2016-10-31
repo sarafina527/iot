@@ -43,6 +43,11 @@
     <servlet-name>HistoryJson</servlet-name>
     <servlet-class>com.servlet.HistoryJson</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>FileDownload</servlet-name>
+    <servlet-class>com.servlet.FileDownload</servlet-class>
+  </servlet>
+
 
 
 
@@ -94,6 +99,10 @@
   <servlet-mapping>
     <servlet-name>HistoryJson</servlet-name>
     <url-pattern>/servlet/HistoryJson</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FileDownload</servlet-name>
+    <url-pattern>/servlet/FileDownload</url-pattern>
   </servlet-mapping>
   
   <welcome-file-list>

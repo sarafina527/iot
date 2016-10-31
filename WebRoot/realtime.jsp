@@ -49,6 +49,7 @@ String rootpath = request.getContextPath();
         			if(null == u)
 					{
 					    response.sendRedirect("login.jsp");
+					    return;
 					}else{
 						List<Integer> nodes = (List)session.getAttribute("nodes");
         				for(int i=0;i<nodes.size();i++){

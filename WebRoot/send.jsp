@@ -8,7 +8,7 @@ String rootpath = request.getContextPath();
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>历史记录</title>
+	<title>数据下载</title>
 	<link rel="stylesheet" type="text/css" href="<%=rootpath%>/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="<%=rootpath%>/css/layout.css">
 	<link rel="stylesheet" type="text/css" href="<%=rootpath%>/css/pageGroup.css"/>
@@ -68,7 +68,7 @@ String rootpath = request.getContextPath();
 				<li class="active"><a href="<%=rootpath%>/send.jsp">数据下载</a></li>
 			</ul>
 			<!-- 日期查询 -->
-			<form action=" " class="search sendContainer">
+			<form action="<%=rootpath%>/servlet/FileDownload" class="search sendContainer">
 				
 				<div class="">
 					<fieldset class="sendFieldset">
@@ -80,7 +80,7 @@ String rootpath = request.getContextPath();
 					    <div class="node_id_div1">节点<input type="text" value="1" id="node_id" name="node_id" readonly=true></div>
 					    <input class="sendSubmit" type="submit" value="下载" >
 					    <div class="checkboxContainer"> 						    
-						    <input type="checkbox" name="all" id="all" value="全选" checked="checked" onclick="CheckboxAll()">
+						    <input type="checkbox" name="all" id="all" value="all" checked="checked" onclick="CheckboxAll()">
 						    <label for="all">全选</label>					    
 						    <input type="checkbox" name="light" id="light" value="light" checked="checked" onclick="CheckboxSub()">
 						    <label for="light">环境光照</label>					    

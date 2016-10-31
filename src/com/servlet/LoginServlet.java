@@ -67,6 +67,7 @@ public class LoginServlet extends HttpServlet {
 		if(result==null||result.size()==0){
 			/*System.out.println("null");*/
 			response.sendRedirect(request.getContextPath()+"/loginerror.jsp");
+			return;
 		}else{
 			String sp = result.get(0).getPassword();
 //			System.out.println(sp);
@@ -84,10 +85,12 @@ public class LoginServlet extends HttpServlet {
 				}
 				request.getSession().setAttribute("nodes", nodes);
 				response.sendRedirect(request.getContextPath()+"/realtime.jsp");
+				return;
 			}
 			else
 			{
 				response.sendRedirect(request.getContextPath()+"/loginerror.jsp");
+				return;
 			}
 		}
 		
