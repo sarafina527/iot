@@ -19,7 +19,7 @@ String rootpath = request.getContextPath();
     <div class="header-container">
     	<div class="header">
             <div class="logo">
-                <a href="#">智能检测系统</a>
+                <a href="#">农业物联云平台——HaiCloud物联云用户终端系统</a>
             </div>
             <div class="nav">
                 <ul>

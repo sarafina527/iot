@@ -690,7 +690,7 @@ input[type="button"].sendButton:hover{
 	background-color: #009966;
 }
 
-/*历史趋势图页面样式*/
+/*--历史趋势图页面样式-- */
 .trendContainer{
 	position: relative;
 	width: 1016px;

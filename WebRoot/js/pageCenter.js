@@ -5,28 +5,12 @@ function webName(){
    
     if(document.body.clientWidth >= 600)
     {
-        oname[0].innerHTML = "农业物联云平台——HaiCloud物联云用户终端系统";
+        oname[0].innerHTML = " 农业物联云平台——HaiCloud物联云用户终端系统 ";
     }
     else
     {
-        oname[0].innerHTML = "农业物联云平台——<br>HaiCloud物联云用户终端系统";
+        oname[0].innerHTML = " 农业物联云平台——<br>HaiCloud物联云用户终端系统 ";
     }
-}
-function box(){
-    //获取DIV为‘box’的盒子
-    var oBox = document.getElementById('centerContainer');
-    //var osidebar = document.getElementById('sidebar');
-    //获取元素自身的宽度
-    var L1 = oBox.offsetWidth;
-    //获取元素自身的高度
-    // var H1 = oBox.offsetHeight;
-    //获取实际页面的left值。（页面宽度减去元素自身宽度/2）
-    var Left = (document.documentElement.clientWidth-L1)/2;
-    //获取实际页面的top值。（页面宽度减去元素自身高度/2）
-    // var top = (document.documentElement.clientHeight-H1)/2;
-    oBox.style.left = Left+'px';
-    //osidebar.style.left = Left+10+'px';
-    // oBox.style.top = top+'px';
 }
 
 function getNowFormatDate() {
