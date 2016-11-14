@@ -33,59 +33,60 @@ public class FileDownload extends HttpServlet {
 		List<sensordata> result = new ArrayList<sensordata>();
 		
 		String str="";
-		str+="日期\t\t";
-		str+="时间\t\t";
+		StringBuilder strb = new StringBuilder("");
+		strb.append("日期\t\t");
+		strb.append("时间\t\t");
 		if(request.getParameter("light")!=null){
-			str+="环境光照(Lx)";
-			str+="\t";
+			strb.append("环境光照(Lx)");
+			strb.append("\t");
 		}
 		if(request.getParameter("temp")!=null){
-			str+="环境温度(°C)";
-			str+="\t";
+			strb.append("环境温度(°C)");
+			strb.append("\t");
 		}
 		if(request.getParameter("humi")!=null){
-			str+="环境湿度(g/m3)";
-			str+="\t";
+			strb.append("环境湿度(g/m3)");
+			strb.append("\t");
 		}
 		if(request.getParameter("soiltemp")!=null){
-			str+="土壤温度(°C)";
-			str+="\t";
+			strb.append("土壤温度(°C)");
+			strb.append("\t");
 			
 		}
 		if(request.getParameter("soiltemp")!=null){
-			str+="土壤湿度(g/m3)";
-			str+="\t";
+			strb.append("土壤湿度(g/m3)");
+			strb.append("\t");
 		}
-		str+="\r\n";
+		strb.append("\r\n");
 		try {
 			result = data1dao.queryByNodeIdAndDate(node_id,stdate,enddate);
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			for(int i=0;i<result.size();i++){
-				str+=sdf.format(result.get(i).getDate());
-				str+="\t";
-				str+=result.get(i).getTime();
-				str+="\t";
+				strb.append(sdf.format(result.get(i).getDate()));
+				strb.append("\t");
+				strb.append(result.get(i).getTime());
+				strb.append("\t");
 				if(request.getParameter("light")!=null){
-					str+=result.get(i).getLight();
-					str+="\t\t";
+					strb.append(result.get(i).getLight());
+					strb.append("\t\t");
 				}
 				if(request.getParameter("temp")!=null){
-					str+=result.get(i).getTemp();
-					str+="\t\t";
+					strb.append(result.get(i).getTemp());
+					strb.append("\t\t");
 				}
 				if(request.getParameter("humi")!=null){
-					str+=result.get(i).getHumi();
-					str+="\t\t";
+					strb.append(result.get(i).getHumi());
+					strb.append("\t\t");
 				}
 				if(request.getParameter("soiltemp")!=null){
-					str+=result.get(i).getSoiltemp();
-					str+="\t\t";
+					strb.append(result.get(i).getSoiltemp());
+					strb.append("\t\t");
 				}
 				if(request.getParameter("soilhumi")!=null){
-					str+=result.get(i).getSoilhumi();
-					str+="\t\t";
+					strb.append(result.get(i).getSoilhumi());
+					strb.append("\t\t");
 				}
-				str+="\r\n";
+				strb.append("\r\n");
 				
 			}
 			
@@ -93,9 +94,9 @@ public class FileDownload extends HttpServlet {
 			e.printStackTrace();
 		}
 		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd_HH:mm:ss");
 		String datestr = sdf.format(date);
-		String filename = "data"+datestr+".txt";
+		String filename = "data_"+datestr+".txt";
 		//设置文件MIME类型  
         response.setContentType(getServletContext().getMimeType(filename));  
         //设置Content-Disposition  
@@ -104,7 +105,7 @@ public class FileDownload extends HttpServlet {
 		response.setCharacterEncoding("UTF-8"); 
 		PrintWriter out = response.getWriter();
 		
-		out.write(str);
+		out.write(strb.toString());
 		out.flush();
 		out.close();
 	}
