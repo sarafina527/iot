@@ -942,6 +942,14 @@ input[type="button"].sendButton:hover{
 	.sendContainer{
 		height: 300px;
 	}
+	.checkboxContainer{
+		width: 100%;
+		padding: 0;
+	}
+	.checkboxContainer label{
+		width: 70%;
+		margin-right: 16px;
+	}
 	input[type="button"].sendButton{
 		margin-bottom: .5em;
 	}

@@ -85,7 +85,7 @@ String rootpath = request.getContextPath();
 					    <input class="sendSubmit" type="submit" value="下载" >
 					    <div class="checkboxContainer"> 						    
 						    <input type="checkbox" name="all" id="all" value="all" checked="checked" onclick="CheckboxAll()">
-						    <label for="all">全选</label>					    
+						    <label for="all">全选&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>					    
 						    <input type="checkbox" name="light" id="light" value="light" checked="checked" onclick="CheckboxSub()">
 						    <label for="light">环境光照</label>					    
 						    <input type="checkbox" name="temp" id="temp" value="temp" checked="checked" onclick="CheckboxSub()">

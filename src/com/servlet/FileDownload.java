@@ -31,7 +31,10 @@ public class FileDownload extends HttpServlet {
  		//查询数据库数据
 		sensordataDao data1dao = new sensordataDao();
 		List<sensordata> result = new ArrayList<sensordata>();
+		
 		String str="";
+		str+="日期\t\t";
+		str+="时间\t\t";
 		if(request.getParameter("light")!=null){
 			str+="环境光照(Lx)";
 			str+="\t";
@@ -56,26 +59,31 @@ public class FileDownload extends HttpServlet {
 		str+="\r\n";
 		try {
 			result = data1dao.queryByNodeIdAndDate(node_id,stdate,enddate);
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			for(int i=0;i<result.size();i++){
+				str+=sdf.format(result.get(i).getDate());
+				str+="\t";
+				str+=result.get(i).getTime();
+				str+="\t";
 				if(request.getParameter("light")!=null){
 					str+=result.get(i).getLight();
-					str+="\t";
+					str+="\t\t";
 				}
 				if(request.getParameter("temp")!=null){
 					str+=result.get(i).getTemp();
-					str+="\t";
+					str+="\t\t";
 				}
 				if(request.getParameter("humi")!=null){
 					str+=result.get(i).getHumi();
-					str+="\t";
+					str+="\t\t";
 				}
 				if(request.getParameter("soiltemp")!=null){
 					str+=result.get(i).getSoiltemp();
-					str+="\t";
+					str+="\t\t";
 				}
 				if(request.getParameter("soilhumi")!=null){
 					str+=result.get(i).getSoilhumi();
-					str+="\t";
+					str+="\t\t";
 				}
 				str+="\r\n";
 				
